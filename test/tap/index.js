@@ -3,8 +3,20 @@ const node = process.execPath
 
 if (module === require.main)
   require('../../lib/tap.js').pass('just the index')
+else {
+  const path = require('path')
+  const StackUtils = require('stack-utils')
+  const escapeStringRegexp = require('escape-string-regexp')
+  const sourceMapSupport = require('source-map-support')
+  const settings = require('../../settings.js')
 
-process.env.TAP_DEV_SHORTSTACK = '1'
+  sourceMapSupport.install({environment: 'node', hookRequire: true})
+
+  settings.stackUtils.internals.push(
+    new RegExp(escapeStringRegexp(path.resolve(__dirname, '..', '..')) + '\\b', 'i')
+  )
+  settings.stackUtils.wrapCallSite = sourceMapSupport.wrapCallSite
+}
 
 module.exports = (...test) => {
   if (process.argv[2] === 'runtest') {

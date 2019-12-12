@@ -1,6 +1,7 @@
 'use strict'
 const t = require('../')
 const cyo = require('../lib/clean-yaml-object.js')
+const settings = require('../settings.js')
 const Domain = require('domain').Domain
 const dom = new Domain()
 dom.whosagooddomain = 'yes you are a good dog'
@@ -37,14 +38,13 @@ const cases = [
     },
     _tapChild: null
   }],
-  [() => process.env.TAP_DEV_SHORTSTACK = '1', {
+  [{
     at: {
       file: require.resolve('../lib/clean-yaml-object.js')
     }
   }, { at: null }],
   [() => {
-    process.env.TAP_DEV_SHORTSTACK = '0'
-    process.env.TAP_DEV_LONGSTACK = '1'
+    settings.atTap = true
   }, {
     at: {
       file: require.resolve('../lib/clean-yaml-object.js'),
@@ -54,7 +54,9 @@ const cases = [
       file: String,
     }
   }],
-  [() => process.env.TAP_DEV_LONGSTACK = '0', {
+  [() => {
+    settings.atTap = false
+  }, {
     stack: '    at Foo.bar (/dev/fire/pwn:420:69)\n'
   }, {
     stack: '    at Foo.bar (/dev/fire/pwn:420:69)\n',
@@ -76,10 +78,10 @@ const cases = [
   [{ found: {}, wanted: {} }, { note: 'object identities differ' }],
   [{ found: dom, wanted: dom }, { note: undefined }],
 ]
-cases.forEach(c => {
+cases.forEach((c, i) => {
   if (typeof c[0] === 'function')
     c.shift()()
-  t.match(cyo(c[0]), c[1])
+  t.match(cyo(c[0]), c[1], `test #${i}`)
 })
 
 t.test('string diffs', t => {

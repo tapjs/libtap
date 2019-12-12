@@ -9,8 +9,6 @@ const EE = require('events').EventEmitter
 const MiniPass = require('minipass')
 const rimraf = require('rimraf')
 
-process.env.TAP_DEV_SHORTSTACK = '1'
-
 // set this forcibly so it doesn't interfere with other tests.
 process.env.TAP_DIAG = ''
 process.env.TAP_BAIL = ''
