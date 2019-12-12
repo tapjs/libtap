@@ -1,7 +1,6 @@
 /*
 /.*
 
-!bin/
 !lib/
 !package.json
 !package-lock.json
@@ -9,10 +8,11 @@
 !CONTRIBUTING.md
 !LICENSE
 !CHANGELOG.md
-!scripts/
 !tap-snapshots/
 !test/
 !.travis.yml
 !.gitignore
 !.gitattributes
 !coverage-map.js
+!nyc.config.js
+!npm-run-test.js
