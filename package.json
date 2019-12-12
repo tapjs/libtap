@@ -70,12 +70,7 @@
     "postunit": "npm run posttest",
     "t": "node bin/run.js test -J -sfails.txt",
     "preversion": "npm test",
-    "postversion": "npm publish",
-    "postpublish": "bash postpublish.sh",
-    "www:build": "cd docs; npm ci; npm run build",
-    "www:develop": "cd docs; npm run develop",
-    "start": "npm run www:develop",
-    "www:serve": "cd docs; npm run serve"
+    "postversion": "npm publish"
   },
   "tap": {
     "esm": false,

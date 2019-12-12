@@ -3,17 +3,12 @@
 
 !bin/
 !lib/
-!docs/
-/docs/public
-/docs/node_modules
-/docs/.cache
 !package.json
 !package-lock.json
 !README.md
 !CONTRIBUTING.md
 !LICENSE
 !CHANGELOG.md
-!example/
 !scripts/
 !tap-snapshots/
 !test/
@@ -21,5 +16,3 @@
 !.gitignore
 !.gitattributes
 !coverage-map.js
-!postpublish.sh
-!netlify.toml
