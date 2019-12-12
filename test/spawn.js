@@ -202,9 +202,6 @@ const main = () => {
   })
 }
 
-// Ignore this because a lot of these cases involve
-// using a SIGKILL before nyc can write coverage
-/* istanbul ignore next */
 switch (process.argv[2]) {
   case 'ok':
     t.pass('this is fine')
