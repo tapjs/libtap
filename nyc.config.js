@@ -9,6 +9,7 @@ module.exports = {
   statements: 100,
   include: [
     'settings.js',
+    'versions.js',
     'lib/**'
   ]
 }

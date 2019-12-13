@@ -3,6 +3,7 @@
 
 !lib/
 !settings.js
+!versions.js
 !package.json
 !package-lock.json
 !README.md
