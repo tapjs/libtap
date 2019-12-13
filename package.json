@@ -21,7 +21,7 @@
     "stack-utils": "^2.0.1",
     "tap-parser": "^10.0.1",
     "tap-yaml": "^1.0.0",
-    "tcompare": "^3.0.0",
+    "tcompare": "^5.0.0",
     "trivial-deferred": "^1.0.1",
     "write-file-atomic": "^3.0.1",
     "yapool": "^1.0.0"
