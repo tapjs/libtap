@@ -7,7 +7,11 @@
 'use strict'
 exports[`test/clean-yaml-object.js TAP diff stuff > another weird one 1`] = `
 Object {
-  "found": "Object {\\n  \\"a\\": 1,\\n}",
+  "found": String(
+    Object {
+      "a": 1,
+    }
+  ),
   "wanted": Object {
     "a": 1,
   },
@@ -17,14 +21,30 @@ Object {
 exports[`test/clean-yaml-object.js TAP diff stuff > objects that do not strictly match 1`] = `
 Object {
   "comparator": "===",
-  "diff": "--- expected\\n+++ actual\\n@@ -1,3 +1,3 @@ Object {\\n Object {\\n-  \\"a\\": \\"1\\",\\n+  \\"a\\": 1,\\n }",
+  "diff": String(
+    --- expected
+    +++ actual
+    @@ -1,3 +1,3 @@
+     Object {
+    -  "a": "1",
+    +  "a": 1,
+     }
+    
+  ),
 }
 `
 
 exports[`test/clean-yaml-object.js TAP diff stuff > string that differ 1`] = `
 Object {
   "comparator": "===",
-  "diff": "--- expected\\n+++ actual\\n@@ -1,1 +1,1 @@\\n-world\\n+hello\\n",
+  "diff": String(
+    --- expected
+    +++ actual
+    @@ -1,1 +1,1 @@
+    -world
+    +hello
+    
+  ),
 }
 `
 
@@ -33,12 +53,26 @@ Object {
   "found": Object {
     "a": 1,
   },
-  "wanted": "Object {\\n  \\"a\\": 1,\\n}",
+  "wanted": String(
+    Object {
+      "a": 1,
+    }
+  ),
 }
 `
 
 exports[`test/clean-yaml-object.js TAP string diffs > must match snapshot 1`] = `
 Object {
-  "diff": "--- expected\\n+++ actual\\n@@ -1,5 +1,2 @@\\n-a big\\n hello\\n world\\n-string\\n-\\n",
+  "diff": String(
+    --- expected
+    +++ actual
+    @@ -1,5 +1,2 @@
+    -a big
+     hello
+     world
+    -string
+    -
+    
+  ),
 }
 `
