@@ -8,6 +8,7 @@ module.exports = {
   branches: 100,
   statements: 100,
   include: [
+    'settings.js',
     'lib/**'
   ]
 }
