@@ -1,7 +1,7 @@
 const glob = require('glob')
 const path = require('path')
 
-const rootFiles = ['settings'];
+const rootFiles = ['settings', 'versions'];
 
 module.exports = t => {
   const parts = path.relative(process.cwd(), path.resolve(t)).split(/\\|\//)
