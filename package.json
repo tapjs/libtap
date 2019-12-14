@@ -23,7 +23,6 @@
     "tap-yaml": "^1.0.0",
     "tcompare": "^5.0.0",
     "trivial-deferred": "^1.0.1",
-    "write-file-atomic": "^3.0.1",
     "yapool": "^1.0.0"
   },
   "devDependencies": {
