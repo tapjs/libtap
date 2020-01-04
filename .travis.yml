@@ -1,7 +1,8 @@
 language: node_js
 
 node_js:
-  - "node"
+# 13.5.0 is broken, pin for now
+  - 13.4.0
   - 12
   - 10
 
