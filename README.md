@@ -14,6 +14,19 @@ edge cases it can be appropriate to use `libtap` directly.
   `tap` does things that are useful by default, if this causes problems for your
   code you may wish to go lower level.
 
+### Recursive rmdir
+
+Some parts of `libtap` require a recursive rmdirSync function.  In node.js 12.10.0+
+the default implementation is `dir => fs.rmdirSync(dir, {recursive: true})`.  For older
+versions of node.js you must either install `rimraf` or set
+`require('libtap/settings').rmdirRecursiveSync` with another implementation.  `tap`
+installs `rimraf` unconditionally so this is only a concern to direct `libtap` users
+who support older versions of node.js.
+
+It is not considered semver-major for a libtap function to use recursive rmdir where
+it previously did not.  If you test on older versions of node.js then you must ensure
+a user-space implementation is available even if it is not currently needed.
+
 ## Environmental changes still in place
 
 * signal-exit is run

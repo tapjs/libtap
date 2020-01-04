@@ -1,13 +1,13 @@
 'use strict'
 const t = require('../')
 const Snapshot = require('../lib/snapshot.js')
-const rimraf = require('rimraf')
+const {rmdirRecursiveSync} = require('../settings.js')
 const path = require('path')
 const dir = path.resolve(__dirname, 'snapshot')
 const fs = require('fs')
 
 t.test('cleanup first', t => {
-  rimraf.sync(dir)
+  rmdirRecursiveSync(dir)
   fs.mkdirSync(dir, {recursive: true})
   process.chdir(dir)
   t.end()
@@ -39,11 +39,19 @@ t.test('actual test', t => {
   sss.save()
   t.throws(_ => fs.statSync(sss.file), 'file is gone')
 
+  t.comment('saving without snapping anything tolerates lack of existing file')
+  sss.save()
+
+  t.comment('saving without snapping anything throws if dir exists in place of file')
+  fs.mkdirSync(sss.file)
+  t.throws(_ => sss.save(), {code: 'EISDIR'}, 'directory exists in place of file')
+  fs.rmdirSync(sss.file)
+
   t.end()
 })
 
 t.test('cleanup after', t => {
-  rimraf.sync(dir)
+  rmdirRecursiveSync(dir)
   process.chdir(__dirname)
   t.end()
 })
