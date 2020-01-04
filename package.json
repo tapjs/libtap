@@ -45,7 +45,8 @@
     "test": "nyc --silent=true node npm-run-test.js | tap-mocha-reporter classic",
     "posttest": "nyc report",
     "preversion": "npm test",
-    "postversion": "npm publish"
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin --follow-tags"
   },
   "files": [
     "settings.js",
