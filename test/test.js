@@ -1050,11 +1050,11 @@ t.test('addAssert', t => {
   return t.end()
 })
 
-t.test('addAssert on prototype', t => {
+t.test('static addAssert', t => {
   function foobar (found, message, extra) {
     return this.ok(found, message, extra)
   }
-  Test.prototype.addAssert('foobar', 1, foobar)
+  Test.addAssert('foobar', 1, foobar)
   t.foobar(true, 'this is fine')
   t.end()
 })
