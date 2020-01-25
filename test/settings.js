@@ -5,9 +5,11 @@ const {rmdirRecursiveSync} = settings
 
 t.ok(Array.isArray(settings.stackUtils.internals), 'Array.isArray(settings.stackUtils.internals)')
 t.not(settings.stackUtils.internals.length, 0)
+t.equal(settings.output, process.stdout)
 
 t.matchSnapshot({
   ...settings,
+  output: 'process.stdout',
   stackUtils: {
     ...settings.stackUtils,
     internals: []

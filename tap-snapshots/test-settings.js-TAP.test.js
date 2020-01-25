@@ -8,6 +8,7 @@
 exports[`test/settings.js TAP > must match snapshot 1`] = `
 Object {
   "atTap": false,
+  "output": "process.stdout",
   "rmdirRecursiveSync": Function rmdirRecursiveSync(dir),
   "stackUtils": Object {
     "ignoredPackages": Array [],

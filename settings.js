@@ -26,7 +26,8 @@ module.exports = {
     // Support `settings.stackUtils.internals.push()`
     internals: StackUtils.nodeInternals(),
     ignoredPackages: []
-  }
+  },
+  output: process.stdout
 }
 
 function initRmdir() {
