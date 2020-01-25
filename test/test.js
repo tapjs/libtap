@@ -1113,7 +1113,7 @@ t.test('snapshots', async t => {
   t.matchSnapshot(outputs[1], 'verifying the snapshot')
 
   const snapFile = path.resolve(__dirname, '..',
-    'tap-snapshots', 'test-test.js-deleteme.test.js')
+    'tap-snapshots', 'test-test.js-deleteme.test.cjs')
   t.matchSnapshot(fs.readFileSync(snapFile, 'utf8'), 'snapshot file')
   fs.unlinkSync(snapFile)
 
