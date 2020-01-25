@@ -1,3 +1,15 @@
+## 0.2.0
+
+### Breaking Changes
+
+* Change extension of snapshot files to .cjs
+
+### Features
+
+* Add `output` option to `libtap/settings`
+* Add `static addAssert` to Test class
+
+
 ## 0.1.0
 
 This module is based on tap 14.10.2.
