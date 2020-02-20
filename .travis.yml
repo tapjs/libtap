@@ -1,8 +1,7 @@
 language: node_js
 
 node_js:
-# 13.5+ is broken, pin until https://github.com/nodejs/node/issues/31142 is resolved
-  - 13.4.0
+  - 13
   - 12
   - 10
 
