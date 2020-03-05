@@ -1,3 +1,17 @@
+## 0.3.0
+
+### Breaking Changes
+
+* Populate `package.json#exports`.  This blocks import/require
+  of 'internal' files
+* Convert `options.processDB.spawn` to an async function
+  in preparation of nyc 15
+
+### Features
+
+* Provide ESM wrapper with named exports using conditional exports
+
+
 ## 0.2.0
 
 ### Breaking Changes
