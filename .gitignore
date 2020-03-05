@@ -4,6 +4,7 @@
 !lib/
 !settings.js
 !versions.js
+!istanbul-loader-hook.mjs
 !package.json
 !package-lock.json
 !README.md

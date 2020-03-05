@@ -4,14 +4,21 @@
 const foregroundChild = require('foreground-child')
 
 async function runTests() {
+  const semver = require('semver')
   const glob = require('glob')
   const os = require('os')
   const t = require('.')
   const coverageMap = require('./coverage-map.js')
+  const testESM = semver.gte(process.versions.node, '13.10.0')
+  const testFileGlob = testESM ? 'test/**/*.{js,mjs}' : 'test/**/*.js'
+  const esLoaderHook = {
+    NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --experimental-loader "${require.resolve('./istanbul-loader-hook.mjs')}"`
+  }
 
   t.jobs = os.cpus().length
 
-  glob.sync('test/**/*.js').forEach(file => {
+  glob.sync(testFileGlob).forEach(file => {
+    const esLoaderEnv = file.endsWith('.mjs') ? esLoaderHook : {}
     t.spawn(
       process.execPath,
       [file],
@@ -20,7 +27,8 @@ async function runTests() {
           ...process.env,
           NYC_CONFIG_OVERRIDE: JSON.stringify({
             include: coverageMap(file) || ''
-          })
+          }),
+          ...esLoaderEnv
         }
       },
       file
