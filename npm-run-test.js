@@ -12,7 +12,7 @@ async function runTests() {
   const testESM = semver.gte(process.versions.node, '13.10.0')
   const testFileGlob = testESM ? 'test/**/*.{js,mjs}' : 'test/**/*.js'
   const esLoaderHook = {
-    NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --experimental-loader "${require.resolve('./istanbul-loader-hook.mjs')}"`
+    NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --experimental-loader @istanbuljs/esm-loader-hook`
   }
 
   t.jobs = os.cpus().length
