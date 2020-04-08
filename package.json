@@ -54,8 +54,9 @@
   "repository": "https://github.com/tapjs/libtap.git",
   "scripts": {
     "snap": "TAP_SNAPSHOT=1 npm test",
-    "test": "nyc --silent=true node npm-run-test.js | tap-mocha-reporter classic",
-    "posttest": "nyc report",
+    "tests-only": "nyc --silent=true node npm-run-test.js | tap-mocha-reporter classic",
+    "test": "npm run -s tests-only",
+    "posttest": "nyc report --check-coverage",
     "preversion": "npm test",
     "postversion": "npm publish",
     "prepublishOnly": "git push origin --follow-tags"

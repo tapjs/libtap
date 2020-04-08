@@ -44,7 +44,9 @@ t.test('actual test', t => {
 
   t.comment('saving without snapping anything throws if dir exists in place of file')
   fs.mkdirSync(sss.file)
-  t.throws(_ => sss.save(), {code: 'EISDIR'}, 'directory exists in place of file')
+  t.throws(_ => sss.save(), {
+    code: process.platform === 'darwin' ? 'EPERM' : 'EISDIR'
+  }, 'directory exists in place of file')
   fs.rmdirSync(sss.file)
 
   t.end()
