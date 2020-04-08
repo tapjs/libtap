@@ -12,7 +12,7 @@
 !CHANGELOG.md
 !tap-snapshots/
 !test/
-!.travis.yml
+!.github
 !.gitignore
 !.gitattributes
 !coverage-map.js
