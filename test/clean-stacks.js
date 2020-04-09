@@ -38,6 +38,7 @@ module.exports = out => out
   // debug output
   .replace(/(\n|^)TAP ([0-9]+) /g, '$1TAP {pid} ')
 
+/*
   // stacks are always changing
   .replace(/\n(( {2})+)stack: \|-?\n((\1  .*).*\n)+/gm,
     '\n$1stack: |\n$1  {STACK}\n')
@@ -45,6 +46,7 @@ module.exports = out => out
     '\n$1stack: |\n$1  {STACK}\n')
   .replace(/(?:\n|^)([a-zA-Z]*Error): (.*)\n((    at .*\n)*)+/gm,
     '\n$1: $2\n    {STACK}\n')
+*/
   .replace(/:[0-9]+:[0-9]+(\)?\n)/g, '#:#$1')
   .replace(/(line|column): [0-9]+/g, '$1: #')
 
