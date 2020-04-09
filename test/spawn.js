@@ -47,7 +47,7 @@ const main = () => {
     })
   })
 
-  t.test('timeout KILL', t => {
+  t.test('timeout KILL', {skip: process.platform === 'win32'}, t => {
     const s = new Spawn({
       command: node,
       args: [ file, 'catch-term' ],
