@@ -6,6 +6,8 @@ const yaml = require('tap-yaml')
 const internals = Object.keys(process.binding('natives'))
 
 module.exports = out => out
+  // normalize new lines
+  .replace(/\r\n/g, '\n')
   // sort keys in yaml blocks
   .replace(/\n(   *)---\n((\1.*\n)*)\1\.\.\.\n/g, ($0, $1, $2) => {
     let o
