@@ -4,6 +4,7 @@ const semver = require('semver')
 
 module.exports = {
   all: true,
+  checkCoverage: process.platform !== 'win32',
   lines: 100,
   functions: 100,
   branches: 100,
