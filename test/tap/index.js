@@ -15,6 +15,11 @@ else {
   settings.stackUtils.internals.push(
     new RegExp(escapeStringRegexp(path.resolve(__dirname, '..', '..')) + '\\b', 'i')
   )
+  if (path.sep === '\\') {
+    settings.stackUtils.internals.push(
+      new RegExp(escapeStringRegexp(path.resolve(__dirname, '..', '..').replace(/\\/g, '/')) + '\\b', 'i')
+    )
+  }
   settings.stackUtils.wrapCallSite = sourceMapSupport.wrapCallSite
 }
 
