@@ -55,7 +55,7 @@ module.exports = (...test) => {
       }, 'exit status')
       t.matchSnapshot(out, 'stdout')
       t.matchSnapshot(
-        err.split('\n')
+        err.split(/\r?\n/)
           // Remove node.js 13.0.0+ message:
           .filter(a => a !== '(Use `node --trace-uncaught ...` to show where the exception was thrown)')
           .join('\n'),
