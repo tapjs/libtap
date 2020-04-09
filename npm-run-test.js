@@ -18,7 +18,7 @@ async function runTests() {
   t.jobs = os.cpus().length
 
   glob.sync(testFileGlob).forEach(file => {
-    if (process.platform === 'win32' && file.contains('sigterm')) {
+    if (process.platform === 'win32' && file.includes('sigterm')) {
       // TODO: investigate proper Win32 replacements for these tests
       return;
     }
