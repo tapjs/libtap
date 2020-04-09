@@ -116,8 +116,8 @@ const main = () => {
       stdio: [0, 1, 2]
     })
     t.plan(1)
-    // Fixup for errno property change in 13.x
-    s.main(() => t.matchSnapshot(s.output.replace(/errno: -2/, 'errno: ENOENT')))
+    // Fixup for errno property change in 13.x (-2 on POSIX, -4058 on Win32)
+    s.main(() => t.matchSnapshot(s.output.replace(/errno: -(2|4058)/, 'errno: ENOENT')))
   })
 
   t.test('failure to spawn even harder', t => {
