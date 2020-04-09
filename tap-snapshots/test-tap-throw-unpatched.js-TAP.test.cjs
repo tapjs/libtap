@@ -14,7 +14,7 @@ Object {
 
 exports[`test/tap/throw-unpatched.js TAP > stderr 1`] = `
 
-{CWD}/test/tap/throw-unpatched.js:2
+{TESTFILE}:2
   throw new Error('not yet patched')
         ^
 Error: not yet patched
