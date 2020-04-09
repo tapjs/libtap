@@ -69,7 +69,7 @@ const main = () => {
     }, 'skipper')
     tt.spawn(node, [ file, 'skip-reason' ])
     tt.test('check it', ttt => {
-      t.matchSnapshot(tt.output)
+      t.matchSnapshot(tt.output.replace(/node\.exe/gi, 'node'))
       t.end()
       tt.end()
       ttt.end()
