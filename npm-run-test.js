@@ -18,6 +18,11 @@ async function runTests() {
   t.jobs = os.cpus().length
 
   glob.sync(testFileGlob).forEach(file => {
+    if (process.platform === 'win32' && file.includes('sigterm')) {
+      // TODO: investigate proper Win32 replacements for these tests
+      return;
+    }
+
     const esLoaderEnv = file.endsWith('.mjs') ? esLoaderHook : {}
     t.spawn(
       process.execPath,

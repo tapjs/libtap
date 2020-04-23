@@ -15,6 +15,11 @@ else {
   settings.stackUtils.internals.push(
     new RegExp(escapeStringRegexp(path.resolve(__dirname, '..', '..')) + '\\b', 'i')
   )
+  if (path.sep === '\\') {
+    settings.stackUtils.internals.push(
+      new RegExp(escapeStringRegexp(path.resolve(__dirname, '..', '..').replace(/\\/g, '/')) + '\\b', 'i')
+    )
+  }
   settings.stackUtils.wrapCallSite = sourceMapSupport.wrapCallSite
 }
 
@@ -34,7 +39,9 @@ module.exports = (...test) => {
     }, { TAP_BAIL: '0', TAP_BUFFER: '0' })
     const t = require('../../lib/tap.js')
     const cs = require('../clean-stacks.js')
-    t.cleanSnapshot = str => cs(str).replace(/[^\n]*DEP0018[^\n]*\n/g, '')
+    t.cleanSnapshot = str => cs(
+      str.replace(process.argv[1], '{TESTFILE}')
+    ).replace(/[^\n]*DEP0018[^\n]*\n/g, '')
     t.plan(3)
     const c = spawn(node, [process.argv[1], 'runtest'], { env: env })
     let out = ''
@@ -48,7 +55,7 @@ module.exports = (...test) => {
       }, 'exit status')
       t.matchSnapshot(out, 'stdout')
       t.matchSnapshot(
-        err.split('\n')
+        err.split(/\r?\n/)
           // Remove node.js 13.0.0+ message:
           .filter(a => a !== '(Use `node --trace-uncaught ...` to show where the exception was thrown)')
           .join('\n'),

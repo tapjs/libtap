@@ -47,7 +47,7 @@ const main = () => {
     })
   })
 
-  t.test('timeout KILL', t => {
+  t.test('timeout KILL', {skip: process.platform === 'win32'}, t => {
     const s = new Spawn({
       command: node,
       args: [ file, 'catch-term' ],
@@ -69,7 +69,7 @@ const main = () => {
     }, 'skipper')
     tt.spawn(node, [ file, 'skip-reason' ])
     tt.test('check it', ttt => {
-      t.matchSnapshot(tt.output)
+      t.matchSnapshot(tt.output.replace(/node\.exe/gi, 'node'))
       t.end()
       tt.end()
       ttt.end()
@@ -116,8 +116,8 @@ const main = () => {
       stdio: [0, 1, 2]
     })
     t.plan(1)
-    // Fixup for errno property change in 13.x
-    s.main(() => t.matchSnapshot(s.output.replace(/errno: -2/, 'errno: ENOENT')))
+    // Fixup for errno property change in 13.x (-2 on POSIX, -4058 on Win32)
+    s.main(() => t.matchSnapshot(s.output.replace(/errno: -(2|4058)/, 'errno: ENOENT')))
   })
 
   t.test('failure to spawn even harder', t => {

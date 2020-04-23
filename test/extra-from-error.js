@@ -136,4 +136,4 @@ this is some code prettified up
   }],
 ]
 
-cases.forEach(c => t.match(extraFromError(c[0], c[1], c[2]), c[3]))
+cases.forEach((c, idx) => t.match(extraFromError(c[0], c[1], c[2]), c[3], c[4] || `test case ${idx}`))
