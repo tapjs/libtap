@@ -35,7 +35,6 @@
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@istanbuljs/esm-loader-hook": "^0.1.0",
-    "babel-plugin-istanbul": "^6.0.0",
     "foreground-child": "^2.0.0",
     "glob": "^7.1.6",
     "nyc": "^15.0.0",
