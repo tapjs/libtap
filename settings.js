@@ -1,15 +1,24 @@
 'use strict'
 
+const fs = require('fs')
 const StackUtils = require('stack-utils')
 
-// Just directly use fs.rmdirSync after LTS/12 is required
+// Just unconditionally use fs.rmdirSync after LTS/12 is required
 let rmdirRecursiveSync
 
 module.exports = {
   atTap: false,
+  get rimrafNeeded() {
+    const [nodeMajor, nodeMinor] = process.versions.node.split('.').map(Number)
+    /* istanbul ignore next: version specific */
+    return !rmdirRecursiveSync && (nodeMajor < 12 || (nodeMajor === 12 && nodeMinor < 10))
+  },
   get rmdirRecursiveSync() {
+    /* istanbul ignore next: version specific */
     if (!rmdirRecursiveSync) {
-      initRmdir()
+      return () => {
+        throw new Error("require('libtap/settings').rmdirRecursiveSync must be initialized for Node.js <12.10.0")
+      }
     }
 
     return rmdirRecursiveSync
@@ -30,14 +39,8 @@ module.exports = {
   output: process.stdout
 }
 
-function initRmdir() {
-  const [nodeMajor, nodeMinor] = process.versions.node.split('.').map(Number)
-  /* istanbul ignore next: version specific branch */
-  if (nodeMajor > 12 || (nodeMajor === 12 && nodeMinor >= 10)) {
-    const fs = require('fs')
-    rmdirRecursiveSync = dir => fs.rmdirSync(dir, {recursive: true})
-  } else {
-    const rimraf = require('rimraf').sync
-    rmdirRecursiveSync = dir => rimraf(dir, {glob: false})
-  }
+/* istanbul ignore next: version specific */
+if (!module.exports.rimrafNeeded) {
+  const fs = require('fs')
+  rmdirRecursiveSync = dir => fs.rmdirSync(dir, {recursive: true})
 }

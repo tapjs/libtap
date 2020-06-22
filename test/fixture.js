@@ -1,8 +1,15 @@
 const t = require('../')
 const Fixture = require('../lib/fixture.js')
-const {rmdirRecursiveSync} = require('../settings.js')
+const settings = require('../settings.js')
 
 const dir = t.testdirName
+
+if (settings.rimrafNeeded) {
+  settings.rmdirRecursiveSync = dir => require('rimraf').sync(dir, {glob: false})
+}
+
+settings.rmdirRecursiveSync(dir)
+
 const f = new Fixture('file', 'bar')
 t.match(f, {
   type: 'file',
@@ -45,4 +52,4 @@ t.match(fs.statSync(`${dir}/link`), fs.statSync(`${dir}/file`),
   'hardlink is hard link')
 t.equal(fs.readlinkSync(`${dir}/symlink`), 'file', 'symlink is symlink')
 t.ok(fs.statSync(`${dir}/dir`).isDirectory(), 'subdir is a dir')
-rmdirRecursiveSync(dir)
+settings.rmdirRecursiveSync(dir)

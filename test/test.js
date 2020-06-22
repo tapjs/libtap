@@ -7,7 +7,11 @@ const util = require('util')
 const assert = require('assert')
 const EE = require('events').EventEmitter
 const MiniPass = require('minipass')
-const {rmdirRecursiveSync} = require('../settings.js')
+const settings = require('../settings.js')
+
+if (settings.rimrafNeeded) {
+  settings.rmdirRecursiveSync = dir => require('rimraf').sync(dir, {glob: false})
+}
 
 // set this forcibly so it doesn't interfere with other tests.
 process.env.TAP_DIAG = ''
@@ -1214,7 +1218,7 @@ t.test('save a fixture', t => {
   let leaveDir
   t.test('leave the dir behind', { saveFixture: true }, t => {
     leaveDir = t.testdir()
-    t.parent.teardown(() => rmdirRecursiveSync(leaveDir))
+    t.parent.teardown(() => settings.rmdirRecursiveSync(leaveDir))
     t.end()
   })
   t.ok(fs.statSync(leaveDir).isDirectory(), 'left dir behind')
