@@ -1,13 +1,18 @@
 'use strict'
 const t = require('../')
 const Snapshot = require('../lib/snapshot.js')
-const {rmdirRecursiveSync} = require('../settings.js')
+const settings = require('../settings.js')
 const path = require('path')
 const dir = path.resolve(__dirname, 'snapshot')
 const fs = require('fs')
 
+if (settings.rimrafNeeded) {
+  settings.rmdirRecursiveSync = dir => require('rimraf').sync(dir, {glob: false})
+}
+
 t.test('cleanup first', t => {
-  rmdirRecursiveSync(dir)
+  settings.rmdirRecursiveSync(dir)
+
   fs.mkdirSync(dir, {recursive: true})
   process.chdir(dir)
   t.end()
@@ -53,7 +58,7 @@ t.test('actual test', t => {
 })
 
 t.test('cleanup after', t => {
-  rmdirRecursiveSync(dir)
+  settings.rmdirRecursiveSync(dir)
   process.chdir(__dirname)
   t.end()
 })
