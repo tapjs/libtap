@@ -1236,3 +1236,326 @@ t.test('fixture dir stuff', t => {
   })
   t.end()
 })
+
+t.test('require defining mocks', t => {
+  // require/mock some actual internal tap modules
+  const diags = t.mock('../lib/diags.js', {
+    '../lib/obj-to-yaml.js': a => `foo ${a}`,
+  })
+  t.equal(diags('bar'), '\nfoo bar', 'should mock actual lib file')
+
+  // stress test common js require injection logic
+  t.test('same level files', t => {
+    const f = t.testdir({
+      'a.js': 'module.exports = "a"',
+      'index.js': 'const a = require("./a.js"); module.exports = () => a',
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mock file at same level', t => {
+          const i = t.mock('./index.js', {
+            './a.js': 'mocked-a',
+          })
+          t.equal(i(), 'mocked-a', 'should get mocked result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('immediately called require', t => {
+    const f = t.testdir({
+      'a.js': 'module.exports = () => { global.foo = true }',
+      'index.js': 'require("./a.js")()',
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mock immediately called require', t => {
+          t.mock('./index.js', {
+            './a.js': () => {
+              t.notOk(global.foo, 'should not run original a.js')
+              t.end()
+            }
+          })
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('run-time invoked require call', t => {
+    const f = t.testdir({
+      'a.js': 'module.exports = "a"',
+        'index.js': 'module.exports = () => { return require("./a.js") }',
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mock file at run time', t => {
+          const i = t.mock('./index.js', {
+            './a.js': 'mocked-a',
+          })
+          t.equal(i(), 'mocked-a', 'should get mocked result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('nested lib files', t => {
+    const f = t.testdir({
+      lib: {
+        'a.js': 'module.exports = "a"',
+      },
+      'index.js': 'const a = require("./lib/a"); module.exports = () => a',
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mock file at nested lib', t => {
+          const i = t.mock('./index.js', {
+            './lib/a.js': 'mocked-a',
+          })
+          t.equal(i(), 'mocked-a', 'should get mocked result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('nested test/lib files', t => {
+    const f = t.testdir({
+      lib: {
+        'a.js': 'module.exports = "a"',
+        'b.js': 'module.exports = "b"',
+        'c.js':
+          `const a = require('./a.js')
+          const b = require('./b.js')
+          const d = require('./utils/d')
+          module.exports = [a, b, d].join(' ')`,
+        utils: {
+          'd.js': 'module.exports = "d"',
+        },
+      },
+      'index.js':
+        `const a = require("./lib/a")
+        const b = require('./lib/b.js')
+        const c = require('./lib/c.js')
+        const d = require("./lib/utils/d.js")
+        module.exports = () => [a, b, c, d].join(' ')`,
+      test: {
+        'test.js':
+          `const t = require('../../..'); // tap
+          t.test('mock file at nested lib', t => {
+            const i = t.mock('../index.js', {
+              '../lib/a.js': 'mocked-a',
+            })
+            t.equal(i(), 'mocked-a b mocked-a b d d', 'should get expected mocked result')
+            t.end()
+          })
+
+          t.test('mock file at nested lib from nested lib', t => {
+            const c = t.mock('../lib/c.js', {
+              '../lib/a.js': 'mocked-a',
+            })
+            t.equal(c, 'mocked-a b d', 'should get expected mocked result')
+            t.end()
+          })
+
+          t.test('mock a mock', t => {
+            const i = t.mock('../index.js', {
+              '../lib/a.js': 'mocked-a',
+              '../lib/c.js': t.mock('../lib/c.js', {
+                '../lib/b': 'mocked-b-within-c'
+              })
+            })
+            t.equal(i(), 'mocked-a b a mocked-b-within-c d d', 'should get expected mocked-mocked result')
+            t.end()
+          })`,
+      },
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test', 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('runner wrapper', t => {
+    const f = t.testdir({
+      lib: {
+        'a.js': 'module.exports = "a"',
+      },
+      'index.js': 'const a = require("./lib/a.js"); module.exports = () => a',
+      test: {
+        runner: {
+          'index.js': 'require("../unit/test")',
+        },
+        unit: {
+          'test.js':
+            `const t = require('../../../..'); // tap
+            t.test('mock file started from a runner', t => {
+              const i = t.mock('../../index.js', {
+                '../../lib/a': 'mocked-a',
+              })
+              t.equal(i(), 'mocked-a', 'should get mocked result')
+              t.end()
+            })`,
+        }
+      }
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test', 'runner', 'index.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('installed modules', t => {
+    const f = t.testdir({
+      node_modules: {
+        foo: {
+          'package.json': JSON.stringify({ name: 'foo', main: './index.js' }),
+          'index.js': 'module.exports = () => "foo"',
+        },
+        bar: {
+          'package.json': JSON.stringify({ name: 'bar', main: './index.js' }),
+          'index.js': 'module.exports = () => "bar"',
+        },
+      },
+      'index.js':
+        `const foo = require('foo')
+        const bar = require('bar')
+        module.exports = foo() + ' ' + bar()`,
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mock installed modules', t => {
+          const i = t.mock('./index.js', {
+            'foo': () => 'mocked-foo',
+          })
+          t.equal(i, 'mocked-foo bar', 'should get expected mocked result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('builtin modules', t => {
+    const f = t.testdir({
+      'index.js':
+        `const util = require('util')
+        module.exports = str => util.format('%s:%s', 'foo', str)`,
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mock builtin modules', t => {
+          const i = t.mock('./index.js', {
+            'util': { format: () => 'mocked-util' },
+          })
+          t.equal(i('bar'), 'mocked-util', 'should get mocked result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('should support mocking within nested deps', t => {
+    const f = t.testdir({
+      lib: {
+        'a.js':
+          `module.exports = require('./b.js')`,
+        'b.js':
+          `module.exports = require('./c.js')`,
+        'c.js':
+          `module.exports = () => 'c'`,
+      },
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mocking deps of required modules', t => {
+          const a = t.mock('./lib/a.js', {
+            './lib/c.js': () => 'mocked-c',
+          })
+          t.equal(a(), 'mocked-c', 'should get mocked-c result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('should support cicle require', t => {
+    const f = t.testdir({
+      lib: {
+        'a.js':
+          `module.exports = require('./b.js')`,
+        'b.js':
+          `const c = require('./c.js')
+          const b = () => 'b and ' + c
+          b.extra = 'BBB'
+          module.exports = () => 'b and ' + c`,
+        'c.js':
+          `const b = require('./b.js')
+          module.exports = () => 'c and ' + b.extra`,
+      },
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mocking cicled required deps', t => {
+          const a = t.mock('./lib/a.js', {})
+          t.ok('should not explode')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.test('should support mocking builtin modules within nested deps', t => {
+    const f = t.testdir({
+      lib: {
+        'a.js':
+          `module.exports = require('./b.js')`,
+        'b.js':
+          `module.exports = require('./c.js')`,
+        'c.js':
+          `module.exports = () => require('fs')`,
+      },
+      'test.js':
+        `const t = require('../..'); // tap
+        t.test('mocking builtin modules in nested modules', t => {
+          const fs = {}
+          const a = t.mock('./lib/a.js', { fs })
+          t.equal(a(), fs, 'should get mocked fs result')
+          t.end()
+        })`,
+    })
+    return t.spawn(
+      process.execPath,
+      [ path.resolve(f, 'test.js') ],
+      { cwd: f },
+    )
+  })
+
+  t.end()
+})
