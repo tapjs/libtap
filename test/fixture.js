@@ -41,9 +41,12 @@ t.throws(() => new Fixture('file'), {
 
 Fixture.make(dir, {
   file: 'content',
+  dir: {},
   symlink: new Fixture('symlink', 'file'),
+  dirlink: new Fixture('symlink', 'dir'),
   link: new Fixture('link', 'file'),
   dir: new Fixture('dir', {}),
+  noexist: new Fixture('symlink', 'non-existent-file'),
 })
 const fs = require('fs')
 t.ok(fs.statSync(dir).isDirectory(), 'dir is a dir')
