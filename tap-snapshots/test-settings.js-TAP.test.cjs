@@ -10,6 +10,7 @@ Object {
   "atTap": false,
   "output": "process.stdout",
   "rimrafNeeded": "version specific",
+  "rmdirRecursive": Function rmdirRecursive(dir, cb),
   "rmdirRecursiveSync": Function rmdirRecursiveSync(dir),
   "stackUtils": Object {
     "ignoredPackages": Array [],

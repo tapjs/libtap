@@ -8,6 +8,7 @@ const fs = require('fs')
 
 if (settings.rimrafNeeded) {
   settings.rmdirRecursiveSync = dir => require('rimraf').sync(dir, {glob: false})
+  settings.rmdirRecursive = (dir, cb) => require('rimraf')(dir, {glob: false}, cb)
 }
 
 t.test('cleanup first', t => {

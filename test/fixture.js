@@ -6,6 +6,7 @@ const dir = t.testdirName
 
 if (settings.rimrafNeeded) {
   settings.rmdirRecursiveSync = dir => require('rimraf').sync(dir, {glob: false})
+  settings.rmdirRecursive = (dir, cb) => require('rimraf')(dir, {glob: false}, cb)
 }
 
 settings.rmdirRecursiveSync(dir)

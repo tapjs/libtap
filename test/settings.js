@@ -11,6 +11,7 @@ t.matchSnapshot({
   ...settings,
   rimrafNeeded: 'version specific',
   rmdirRecursiveSync(dir) {},
+  rmdirRecursive(dir, cb) {},
   output: 'process.stdout',
   stackUtils: {
     ...settings.stackUtils,
@@ -26,7 +27,18 @@ t.throws(_ => {
   settings.rmdirRecursiveSync = () => {}
 }, TypeError)
 
+t.throws(_ => {
+  settings.rmdirRecursive = 'this is not a function'
+}, TypeError)
+
+t.throws(_ => {
+  settings.rmdirRecursive = () => {}
+}, TypeError)
+
 const replacement = dir => {}
+const replacementAsync = (dir, cb) => {}
 settings.rmdirRecursiveSync = replacement
+settings.rmdirRecursive = replacementAsync
 t.equal(settings.rimrafNeeded, false)
 t.equal(settings.rmdirRecursiveSync, replacement)
+t.equal(settings.rmdirRecursive, replacementAsync)
