@@ -1669,3 +1669,10 @@ t.test('setting compareOptions to configure tmatch behavior', t => {
   t.not(t.compareOptions.includeEnumerable, true, 'did not set on parent compareOptions')
   t.end()
 })
+
+t.test('resolve child test promise to child test results', async t => {
+  const results = await t.test('child test', async t => {
+    t.pass('this is fine')
+  })
+  t.matchSnapshot(results, 'should get a results object')
+})
