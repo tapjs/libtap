@@ -77,6 +77,9 @@ const cases = [
   [{ stack: '' }, { stack: null }],
   [{ found: {}, wanted: {} }, { note: 'object identities differ' }],
   [{ found: dom, wanted: dom }, { note: undefined }],
+  [{ compareOptions: {} }, { compareOptions: undefined }],
+  [{ compareOptions: false }, { compareOptions: undefined }],
+  [{ compareOptions: { a: 1 } }, { compareOptions: { a: 1 } }],
 ]
 cases.forEach((c, i) => {
   if (typeof c[0] === 'function')

@@ -1207,8 +1207,36 @@ not ok 7 - a message
   ...
 
 ok 8 - should not match pattern provided # TODO
-1..8
-# failed 4 of 8 tests
+not ok 9 - fails, prints diff in js mode
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  diff: |
+    --- expected
+    +++ actual
+    @@ -1,4 +1,4 @@
+     {
+    -  "a": "asdf",
+    -  "c": 1,
+    +  "a": "b",
+    +  "c": /asdf/,
+     }
+  pattern:
+    a: asdf
+    c: 1
+  source: |2
+          tt.compareOptions.style = 'js'
+          tt.match({ a: 'b', c: /asdf/ }, { a: 'asdf', c: 1 },
+    --^
+                   'fails, prints diff in js mode')
+  stack: |
+    {STACK}
+  ...
+
+1..9
+# failed 5 of 9 tests
 # todo: 2
 
 `

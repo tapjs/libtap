@@ -390,6 +390,10 @@ t.test('assertions and weird stuff', t => {
       tt.notMatch({ a: 'b', c: /asdf/ }, { a: 'asdf', c: 1 },
                   { todo: true })
 
+      tt.compareOptions.style = 'js'
+      tt.match({ a: 'b', c: /asdf/ }, { a: 'asdf', c: 1 },
+               'fails, prints diff in js mode')
+
       tt.end()
     },
 
@@ -1649,5 +1653,19 @@ t.test('require defining mocks', t => {
     )
   })
 
+  t.end()
+})
+
+t.test('setting compareOptions to configure tmatch behavior', t => {
+  t.compareOptions = { sort: false }
+  t.test('first child', tt => {
+    tt.equal(tt.compareOptions.sort, false, 'inherited')
+    tt.not(tt.compareOptions, t.compareOptions, 'not same object')
+    tt.has({noSortHere: true}, tt.compareOptions, 'does not (yet) respect enumerable (not-own) property')
+    tt.compareOptions.includeEnumerable = true
+    tt.notHas({includeEnumerable: true}, tt.compareOptions, 'respects enumerable (not-own) property')
+    tt.end()
+  })
+  t.not(t.compareOptions.includeEnumerable, true, 'did not set on parent compareOptions')
   t.end()
 })
