@@ -7,10 +7,14 @@ const StackUtils = require('stack-utils')
 let rmdirRecursiveSync
 let rmdirRecursive
 
+let hasFsRm = false
+
 module.exports = {
   atTap: false,
   get rimrafNeeded() {
     const [nodeMajor, nodeMinor] = process.versions.node.split('.').map(Number)
+    /* istanbul ignore next: version specific */
+    hasFsRm = (nodeMajor === 14 && nodeMinor >= 14) || nodeMajor >= 15
     /* istanbul ignore next: version specific */
     return !rmdirRecursiveSync && (nodeMajor < 12 || (nodeMajor === 12 && nodeMinor < 10))
   },
@@ -60,6 +64,8 @@ module.exports = {
 /* istanbul ignore next: version specific */
 if (!module.exports.rimrafNeeded) {
   const fs = require('fs')
-  rmdirRecursiveSync = dir => fs.rmdirSync(dir, {recursive: true, force: true})
-  rmdirRecursive = (dir, cb) => fs.rmdir(dir, {recursive: true, force: true}, cb)
+  const rm = hasFsRm ? 'rm' : 'rmdir'
+  const rmSync = `${rm}Sync`
+  rmdirRecursiveSync = dir => fs[rmSync](dir, {recursive: true, force: true})
+  rmdirRecursive = (dir, cb) => fs[rm](dir, {recursive: true, force: true}, cb)
 }
