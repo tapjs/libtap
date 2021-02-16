@@ -1498,7 +1498,7 @@ TAP version 13
         column: #
         file: test/test.js
       source: |2
-              tt.beforeEach(async cb => {
+              tt.beforeEach(async () => {
                 throw new Error('poop')
         --^
               })
@@ -1520,7 +1520,7 @@ not ok 1 - child # {time}
         column: #
         file: test/test.js
       source: |2
-              tt.beforeEach(async cb => {
+              tt.beforeEach(async () => {
                 throw new Error('poop')
         --^
               })

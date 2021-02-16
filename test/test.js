@@ -902,22 +902,18 @@ t.test('assertions and weird stuff', t => {
     },
 
     'beforeEach afterEach': tt => {
-      tt.beforeEach(function (cb) {
+      tt.beforeEach(function () {
         console.error('parent be', this.name)
-        cb()
       })
-      tt.afterEach(function (cb) {
+      tt.afterEach(function () {
         console.error('parent ae', this.name)
-        cb()
       })
       tt.test('child', tt => {
-        tt.beforeEach(function (cb) {
+        tt.beforeEach(function () {
           console.error('child be', this.name)
-          cb()
         })
-        tt.afterEach(function (cb) {
+        tt.afterEach(function () {
           console.error('child ae', this.name)
-          cb()
         })
         tt.test('grandkid', tt => Promise.resolve(console.error('in test')))
         tt.end()
@@ -938,7 +934,7 @@ t.test('assertions and weird stuff', t => {
     },
 
     'throw in root beforeEach': tt => {
-      tt.beforeEach(async cb => {
+      tt.beforeEach(async () => {
         throw new Error('poop')
       })
       tt.test('child', tt => {
