@@ -3271,7 +3271,7 @@ exports[`test/test.js TAP test dir name does not throw when no main module is pr
 `
 
 exports[`test/test.js TAP test dir name does not throw when no main module is present > stdout 1`] = `
-./TAP
+./tap-testdir-TAP
 
 `
 
