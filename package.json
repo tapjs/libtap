@@ -20,7 +20,7 @@
     "async-hook-domain": "^2.0.1",
     "bind-obj-methods": "^2.0.0",
     "diff": "^4.0.2",
-    "function-loop": "^1.0.2",
+    "function-loop": "^2.0.1",
     "minipass": "^3.1.1",
     "own-or": "^1.0.0",
     "own-or-env": "^1.0.1",
