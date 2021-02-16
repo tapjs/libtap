@@ -991,6 +991,77 @@ t.test('assertions and weird stuff', t => {
       ee.emit('pass')
       t.end()
     },
+
+    'before sync': t => {
+      let x = false
+      t.before(() => x = true)
+      t.equal(x, true, 'before was called')
+      t.end()
+    },
+    'before async': t => {
+      let x = false
+      let y = false
+      t.before(async () => {
+        x = true
+        await Promise.resolve(true)
+        y = true
+      })
+      t.equal(x, true, 'before was called')
+      t.equal(y, false, 'before not done yet')
+      t.test('child', t => {
+        t.equal(y, true, 'tests wait for t.before to finish')
+        t.end()
+      })
+      t.end()
+    },
+    'before after sync test fails': t => {
+      t.test('child', t => {
+        t.test('sync child', t => t.end())
+        t.before(() => {})
+        t.fail('should not print this')
+      })
+      t.end()
+    },
+    'before after async test fails': t => {
+      t.test('child', t => {
+        t.test('sync child', async t => {})
+        t.before(() => {})
+        t.fail('should not print this')
+      })
+      t.end()
+    },
+    'before after assertion fails': t => {
+      t.test('child', t => {
+        t.pass('this is going to be trouble')
+        t.before(() => {})
+        t.fail('should not print this')
+      })
+      t.end()
+    },
+    'before called more than once fails': t => {
+      t.test('child', t => {
+        t.before(() => {})
+        t.before(() => {})
+        t.fail('should not print this')
+      })
+      t.end()
+    },
+    'before throw': t => {
+      t.test('child', t => {
+        t.before(() => {throw new Error('poo')})
+        t.test('async child', t => t.end())
+        t.fail('should not print this')
+      })
+      t.end()
+    },
+    'before reject': t => {
+      t.test('child', t => {
+        t.before(async () => {throw new Error('poo')})
+        t.test('async child', t => t.end())
+        t.fail('should not print this')
+      })
+      t.end()
+    },
   }
 
   const keys = Object.keys(cases)

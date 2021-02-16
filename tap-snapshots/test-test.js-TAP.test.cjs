@@ -164,6 +164,174 @@ Bail out! whoops
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff before after assertion fails > output 1`] = `
+TAP version 13
+# Subtest: child
+    ok 1 - this is going to be trouble
+    not ok 2 - t.before() called after starting tests
+      ---
+      stack: |
+        {STACK}
+      tapCaught: testFunctionThrow
+      test: child
+      ...
+    
+    1..2
+    # failed 1 of 2 tests
+not ok 1 - child # {time}
+
+1..1
+# failed 1 test
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before after async test fails > output 1`] = `
+TAP version 13
+# Subtest: child
+    # Subtest: sync child
+        1..0
+    ok 1 - sync child # {time}
+    
+    not ok 2 - t.before() called after starting tests
+      ---
+      stack: |
+        {STACK}
+      tapCaught: testFunctionThrow
+      test: child
+      ...
+    
+    1..2
+    # failed 1 of 2 tests
+not ok 1 - child # {time}
+
+1..1
+# failed 1 test
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before after sync test fails > output 1`] = `
+TAP version 13
+# Subtest: child
+    # Subtest: sync child
+        1..0
+    ok 1 - sync child # {time}
+    
+    not ok 2 - t.before() called after starting tests
+      ---
+      stack: |
+        {STACK}
+      tapCaught: testFunctionThrow
+      test: child
+      ...
+    
+    1..2
+    # failed 1 of 2 tests
+not ok 1 - child # {time}
+
+1..1
+# failed 1 test
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before async > output 1`] = `
+TAP version 13
+ok 1 - before was called
+ok 2 - before not done yet
+# Subtest: child
+    ok 1 - tests wait for t.before to finish
+    1..1
+ok 3 - child # {time}
+
+1..3
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before called more than once fails > output 1`] = `
+TAP version 13
+# Subtest: child
+    not ok 1 - called t.before() more than once
+      ---
+      stack: |
+        {STACK}
+      tapCaught: testFunctionThrow
+      test: child
+      ...
+    
+    1..1
+    # failed 1 test
+not ok 1 - child # {time}
+
+1..1
+# failed 1 test
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before reject > output 1`] = `
+TAP version 13
+# Subtest: child
+    not ok 1 - poo
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      source: |2
+              t.test('child', t => {
+                t.before(async () => {throw new Error('poo')})
+        --^
+                t.test('async child', t => t.end())
+                t.fail('should not print this')
+      stack: |
+        {STACK}
+      test: child
+      ...
+    
+    1..1
+    # failed 1 test
+not ok 1 - child # {time}
+
+1..1
+# failed 1 test
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before sync > output 1`] = `
+TAP version 13
+ok 1 - before was called
+1..1
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff before throw > output 1`] = `
+TAP version 13
+# Subtest: child
+    not ok 1 - poo
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      source: |2
+              t.test('child', t => {
+                t.before(() => {throw new Error('poo')})
+        --^
+                t.test('async child', t => t.end())
+                t.fail('should not print this')
+      stack: |
+        {STACK}
+      tapCaught: testFunctionThrow
+      test: child
+      ...
+    
+    1..1
+    # failed 1 test
+not ok 1 - child # {time}
+
+1..1
+# failed 1 test
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff beforeEach afterEach > output 1`] = `
 TAP version 13
 # Subtest: child
