@@ -353,10 +353,26 @@ t.test('assertions and weird stuff', t => {
       tt.end()
     },
 
+    notHas: tt => {
+      tt.notHas({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should fail')
+      tt.notHas({ a: 'b', c: '1' }, { a: 'b', b: 1 }, 'should pass')
+      tt.notHas({ a: 'b', c: 1 }, { a: 'b', c: Number }, 'should pass')
+      tt.notHas({ a: 1, b: 2, c: 3 }, { b: '2' }, 'should fail')
+      tt.notHas({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+      tt.end()
+    },
+
     hasStrict: tt => {
       tt.hasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should fail')
       tt.hasStrict({ a: 1, b: 2, c: 3 }, { b: 2 }, 'should pass')
       tt.hasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+      tt.end()
+    },
+
+    notHasStrict: tt => {
+      tt.notHasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should pass')
+      tt.notHasStrict({ a: 1, b: 2, c: 3 }, { b: 2 }, 'should fail')
+      tt.notHasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
       tt.end()
     },
 
