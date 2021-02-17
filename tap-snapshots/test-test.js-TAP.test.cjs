@@ -2310,6 +2310,27 @@ not ok 1 # {time}
 
 `
 
+exports[`test/test.js TAP resolve child test promise to child test results > should get a results object 1`] = `
+FinalResults {
+  "bailout": false,
+  "count": 1,
+  "fail": 0,
+  "failures": Array [],
+  "ok": true,
+  "pass": 1,
+  "plan": FinalPlan {
+    "comment": "",
+    "end": 1,
+    "skipAll": false,
+    "skipReason": "",
+    "start": 1,
+  },
+  "skip": 0,
+  "time": null,
+  "todo": 0,
+}
+`
+
 exports[`test/test.js TAP short output checks bailout after end bailout > bailout after end 1`] = `
 TAP version 13
 # Subtest
