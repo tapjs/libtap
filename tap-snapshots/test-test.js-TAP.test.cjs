@@ -1243,6 +1243,112 @@ ok 4 - should not be equal
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff notHas > output 1`] = `
+TAP version 13
+not ok 1 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    a: b
+    c: "1"
+  pattern:
+    a: b
+    c: 1
+  source: |2
+        notHas: tt => {
+          tt.notHas({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should fail')
+    --^
+          tt.notHas({ a: 'b', c: '1' }, { a: 'b', b: 1 }, 'should pass')
+          tt.notHas({ a: 'b', c: 1 }, { a: 'b', c: Number }, 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+ok 2 - should pass
+ok 3 - should pass
+not ok 4 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    a: 1
+    b: 2
+    c: 3
+  pattern:
+    b: "2"
+  source: |2
+          tt.notHas({ a: 'b', c: 1 }, { a: 'b', c: Number }, 'should pass')
+          tt.notHas({ a: 1, b: 2, c: 3 }, { b: '2' }, 'should fail')
+    --^
+          tt.notHas({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+          tt.end()
+  stack: |
+    {STACK}
+  ...
+
+not ok 5 - should not contain all provided fields # TODO
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    a: b
+    c: "1"
+  pattern:
+    a: b
+    c: 1
+  source: |2
+          tt.notHas({ a: 1, b: 2, c: 3 }, { b: '2' }, 'should fail')
+          tt.notHas({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+    --^
+          tt.end()
+        },
+  ...
+
+1..5
+# failed 3 of 5 tests
+# todo: 1
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff notHasStrict > output 1`] = `
+TAP version 13
+ok 1 - should pass
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    a: 1
+    b: 2
+    c: 3
+  pattern:
+    b: 2
+  source: |2
+          tt.notHasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should pass')
+          tt.notHasStrict({ a: 1, b: 2, c: 3 }, { b: 2 }, 'should fail')
+    --^
+          tt.notHasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+          tt.end()
+  stack: |
+    {STACK}
+  ...
+
+ok 3 - should not contain all provided fields strictly # TODO
+1..3
+# failed 1 of 3 tests
+# todo: 1
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff plan excess > output 1`] = `
 TAP version 13
 1..1
