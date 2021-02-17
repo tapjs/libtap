@@ -344,6 +344,15 @@ t.test('assertions and weird stuff', t => {
       tt.end()
     },
 
+    has: tt => {
+      tt.has({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should pass')
+      tt.has({ a: 'b', c: '1' }, { a: 'b', b: 1 }, 'should fail')
+      tt.has({ a: 'b', c: 1 }, { a: 'b', c: Number }, 'should fail')
+      tt.has({ a: 1, b: 2, c: 3 }, { b: '2' }, 'should pass')
+      tt.has({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+      tt.end()
+    },
+
     hasStrict: tt => {
       tt.hasStrict({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should fail')
       tt.hasStrict({ a: 1, b: 2, c: 3 }, { b: 2 }, 'should pass')

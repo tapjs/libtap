@@ -906,6 +906,66 @@ ok 1 - parent # {time}
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff has > output 1`] = `
+TAP version 13
+ok 1 - should pass
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  diff: |
+    --- expected
+    +++ actual
+    @@ -1,4 +1,3 @@
+     Object {
+       "a": "b",
+    -  "b": 1,
+     }
+  source: |2
+          tt.has({ a: 'b', c: '1' }, { a: 'b', c: 1 }, 'should pass')
+          tt.has({ a: 'b', c: '1' }, { a: 'b', b: 1 }, 'should fail')
+    --^
+          tt.has({ a: 'b', c: 1 }, { a: 'b', c: Number }, 'should fail')
+          tt.has({ a: 1, b: 2, c: 3 }, { b: '2' }, 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 3 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  diff: |
+    --- expected
+    +++ actual
+    @@ -1,4 +1,4 @@
+     Object {
+       "a": "b",
+    -  "c": Function Number(),
+    +  "c": 1,
+     }
+  source: |2
+          tt.has({ a: 'b', c: '1' }, { a: 'b', b: 1 }, 'should fail')
+          tt.has({ a: 'b', c: 1 }, { a: 'b', c: Number }, 'should fail')
+    --^
+          tt.has({ a: 1, b: 2, c: 3 }, { b: '2' }, 'should pass')
+          tt.has({ a: 'b', c: '1' }, { a: 'b', c: 1 }, { todo: true })
+  stack: |
+    {STACK}
+  ...
+
+ok 4 - should pass
+ok 5 - should contain all provided fields # TODO
+1..5
+# failed 2 of 5 tests
+# todo: 1
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff hasStrict > output 1`] = `
 TAP version 13
 not ok 1 - should fail
