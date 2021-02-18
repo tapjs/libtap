@@ -9,9 +9,9 @@ exports[`test/base.js TAP parser event stuff no bail > counts 1`] = `
 Object {
   "fail": 1,
   "pass": 1,
-  "skip": 1,
+  "skip": 2,
   "todo": 1,
-  "total": 4,
+  "total": 7,
 }
 `
 
@@ -35,6 +35,13 @@ Object {
       "name": "not so fine",
       "ok": false,
       "skip": "dont care for now",
+    },
+    Result {
+      "fullname": "",
+      "id": 7,
+      "name": "just a regular skip",
+      "ok": true,
+      "skip": "filter: some other thing",
     },
   ],
   "todo": Array [
