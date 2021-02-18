@@ -316,7 +316,10 @@ not ok 2 - actually not fine
   ...
 not ok 3 - not so fine # TODO will be fine later
 not ok 4 - not so fine # SKIP dont care for now
-1..4
+ok 5 - grep filtered test # SKIP filter: /grep/
+ok 6 - only filtered test # SKIP filter: only
+ok 7 - just a regular skip # SKIP filter: some other thing
+1..7
 `
 
   t.test('no bail', t => {
