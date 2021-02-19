@@ -1297,6 +1297,12 @@ t.test('test dir name does not throw when no main module is present', t => {
   })
 })
 
+t.test('snapshot file name', t => {
+  const snapshotDir = path.resolve(__dirname, '..', 'tap-snapshots', 'test-test.js-TAP-snapshot-file-name.txt')
+  t.equal(t.snapshotFilename('.txt'), snapshotDir)
+  t.end()
+})
+
 t.test('fixture dir stuff', t => {
   const tdn = t.testdirName
   t.throws(() => fs.statSync(tdn), 'doesnt exist yet')
