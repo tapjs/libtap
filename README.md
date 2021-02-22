@@ -16,15 +16,15 @@ edge cases it can be appropriate to use `libtap` directly.
 
 ### Recursive rmdir
 
-Some parts of `libtap` require a recursive rmdirSync function.  In Node.js 12.10.0+
-the default implementation is `dir => fs.rmdirSync(dir, {recursive: true})`.  For older
-versions of Node.js you must set `require('libtap/settings').rmdirRecursiveSync` with a
-compatible function.  This function must be synchronous and have a single parameter:
+Some parts of `libtap` require recursive rmdir functions.  In Node.js 12.10.0+
+this is provided by the Node.js core `fs` module.  For older versions of Node.js you
+must set compatible functions:
 
 ```js
-const rimraf = require('rimraf').sync
+const rimraf = require('rimraf')
 const settings = require('libtap/settings')
-settings.rmdirRecursiveSync = dir => rimraf(dir, {glob: false})
+settings.rmdirRecursiveSync = dir => rimraf.sync(dir, {glob: false})
+settings.rmdirRecursive = (dir, cb) => rimraf(dir, {glob: false}, cb)
 ```
 
 This is handled by `tap` so only direct users of `libtap` who need to support older
