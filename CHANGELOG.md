@@ -3,7 +3,8 @@
 ### Breaking Changes
 
 * Run fixture cleanup asynchronously, after teardown
-* Remove callback from beforeEach / afterEach
+* beforeEach / afterEach no longer received a callback, are assumed to be synchronous
+  if they do not return a promise
 * Improve tap-snapshot folder structure
 * Inherit t.saveFixture boolean
 
@@ -13,7 +14,6 @@
 * Add tap-testdir- to the generated test dir folder
 * Add `t.mock()` API
 * Add `t.before(fn)` API
-* beforEach / afterEach can return promises
 * Separate `t.match` and `t.has`
 * Add `t.notHas()` / `t.notHasStrict()` API's
 * Support `t.compareOptions` for configuring tcompare behavior
