@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs')
+const path = require('path')
 const StackUtils = require('stack-utils')
 
 // Just unconditionally use fs.rmdirSync after LTS/12 is required
@@ -58,7 +59,10 @@ module.exports = {
     internals: StackUtils.nodeInternals(),
     ignoredPackages: []
   },
-  output: process.stdout
+  output: process.stdout,
+  snapshotFile: (cwd, main, argv) => {
+    return path.resolve(cwd, 'tap-snapshots', main + argv + '.test.cjs')
+  }
 }
 
 /* istanbul ignore next: version specific */
