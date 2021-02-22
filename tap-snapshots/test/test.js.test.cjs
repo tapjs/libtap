@@ -3614,6 +3614,55 @@ some string \\\\ \\\` \\\${process.env.FOO}
 
 `
 
+exports[`test/test.js TAP snapshots > snapshot file 2`] = `
+/* IMPORTANT
+ * This snapshot file is auto-generated, but designed for humans.
+ * It should be checked into source control and tracked carefully.
+ * Re-generate by setting TAP_SNAPSHOT=1 and running tests.
+ * Make sure to inspect the output below.  Do not ignore changes!
+ */
+'use strict'
+exports[\`test/test.js deleteme child test > a jsonic object 1\`] = \`
+{
+  "foo": "bar"
+}
+\`
+
+exports[\`test/test.js deleteme child test > a mutated object 1\`] = \`
+Object {
+  "foo": "bar",
+  "mutated": true,
+}
+\`
+
+exports[\`test/test.js deleteme child test > an object 1\`] = \`
+Object {
+  "foo": "bar",
+}
+\`
+
+exports[\`test/test.js deleteme child test > expect resolving Promise 1\`] = \`
+true
+\`
+
+exports[\`test/test.js deleteme child test > modify the promise result 1\`] = \`
+a: 1
+\`
+
+exports[\`test/test.js deleteme child test > must match snapshot 1\`] = \`
+do this eventually
+\`
+
+exports[\`test/test.js deleteme child test > promise fn 1\`] = \`
+420
+\`
+
+exports[\`test/test.js deleteme child test > string 1\`] = \`
+some string \\\\ \\\` \\\${process.env.FOO}
+\`
+
+`
+
 exports[`test/test.js TAP snapshots > verifying the snapshot 1`] = `
 TAP version 13
 # Subtest: child test

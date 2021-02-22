@@ -1,9 +1,9 @@
 'use strict'
+
 const t = require('../')
 const Snapshot = require('../lib/snapshot.js')
 const settings = require('../settings.js')
 const path = require('path')
-const dir = path.resolve(__dirname, 'snapshot')
 const fs = require('fs')
 
 if (settings.rimrafNeeded) {
@@ -11,37 +11,36 @@ if (settings.rimrafNeeded) {
   settings.rmdirRecursive = (dir, cb) => require('rimraf')(dir, {glob: false}, cb)
 }
 
-t.test('cleanup first', t => {
-  settings.rmdirRecursiveSync(dir)
-
-  fs.mkdirSync(dir, {recursive: true})
-  process.chdir(dir)
-  t.end()
-})
+const dir = t.testdir()
+const snapfile = dir + '/snapshot.test.cjs'
 
 t.test('actual test', t => {
   t.comment('not using subtests, because snapshots are per-test')
 
   t.test('checking snapshot without creating throws', t => {
-    const s = new Snapshot(t)
+    const s = new Snapshot()
+    s.file = snapfile
     t.throws(_ => s.read('asdf', 'asdf'))
     t.end()
   })
 
-  const s = new Snapshot(t)
-  t.comment('create some snapshots')
+  const s = new Snapshot()
+  s.file = snapfile
+  t.comment('create some snapshots', s.file)
   s.snap(fs.readFileSync(__filename, 'utf8'), 'this file')
   s.snap('this is fine', 'a statement of acceptance')
   s.save()
 
   t.comment('now check that the snapshots are valid')
-  const ss = new Snapshot(t)
+  const ss = new Snapshot()
+  ss.file = snapfile
   t.equal(fs.readFileSync(__filename, 'utf8'), ss.read('this file'))
   t.equal('this is fine', ss.read('a statement of acceptance'))
   t.throws(_ => ss.read('this is not in the file'))
 
   t.comment('saving without snapping anything removes the file')
-  const sss = new Snapshot(t)
+  const sss = new Snapshot()
+  sss.file = snapfile
   sss.save()
   t.throws(_ => fs.statSync(sss.file), 'file is gone')
 
@@ -52,14 +51,17 @@ t.test('actual test', t => {
   fs.mkdirSync(sss.file)
   t.throws(_ => sss.save(), {
     code: process.platform === 'linux' ? 'EISDIR' : 'EPERM'
-  }, 'directory exists in place of file')
+  }, 'save(): directory exists in place of file')
+  t.throws(_ => sss.read('this file'), {
+    message: /^Snapshot file not found: /
+  }, 'read(): directory exists in place of file')
   fs.rmdirSync(sss.file)
 
-  t.end()
-})
+  // process.argv is relevant
+  process.argv.push('asdf', 'foo', 'bar')
+  const ssss = new Snapshot()
+  const file = path.resolve('tap-snapshots/test/snapshot.js-asdf-foo-bar.test.cjs')
+  t.equal(ssss.file, file)
 
-t.test('cleanup after', t => {
-  settings.rmdirRecursiveSync(dir)
-  process.chdir(__dirname)
   t.end()
 })

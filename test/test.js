@@ -1181,6 +1181,7 @@ t.test('spawn', t => {
 
 t.test('snapshots', async t => {
   const Snapshot = require('../lib/snapshot.js')
+  const dir = t.testdir()
   const snap = [ true, false ]
   const fn = async snap => {
     const tt = new Test({
@@ -1188,6 +1189,7 @@ t.test('snapshots', async t => {
       name: 'deleteme',
       buffered: true
     })
+    tt.snapshotFile = `${dir}/tap-snapshots/deleteme.test.cjs`
     await tt.test('child test', { snapshot: snap, buffered: false }, tt => {
       tt.matchSnapshot({ foo: 'bar' }, 'an object')
       tt.formatSnapshot = o => JSON.stringify(o, null, 2)
@@ -1206,18 +1208,13 @@ t.test('snapshots', async t => {
     })
     tt.emit('teardown')
     tt.end()
+    t.matchSnapshot(fs.readFileSync(tt.snapshotFile, 'utf8'), 'snapshot file')
     return tt.output
   }
   const outputs = [await fn(true), await fn(false) ]
 
   t.matchSnapshot(outputs[0], 'saving the snapshot')
   t.matchSnapshot(outputs[1], 'verifying the snapshot')
-
-  const snapFile = path.resolve(__dirname, '..',
-    'tap-snapshots', 'test-test.js-deleteme.test.cjs')
-  t.matchSnapshot(fs.readFileSync(snapFile, 'utf8'), 'snapshot file')
-  fs.unlinkSync(snapFile)
-
   t.end()
 })
 
