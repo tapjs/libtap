@@ -154,3 +154,27 @@ t.test('diff stuff', t => {
 
   t.end()
 })
+
+t.test('saveFixture included if relevant', t => {
+  const { TAP_SAVE_FIXTURE } = process.env
+  t.teardown(() => {
+    process.env.TAP_SAVE_FIXTURE = TAP_SAVE_FIXTURE === '1' ? '1' : ''
+  })
+
+  process.env.TAP_SAVE_FIXTURE = '1'
+  t.matchSnapshot(cyo({
+    saveFixture: false,
+  }), 'show if false and env=1')
+  t.matchSnapshot(cyo({
+    saveFixture: true,
+  }), 'hide if true and env=1')
+
+  process.env.TAP_SAVE_FIXTURE = '0'
+  t.matchSnapshot(cyo({
+    saveFixture: true,
+  }), 'show if true and env=0')
+  t.matchSnapshot(cyo({
+    saveFixture: false,
+  }), 'hide if false and env=0')
+  t.end()
+})

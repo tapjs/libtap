@@ -1673,3 +1673,19 @@ t.test('resolve child test promise to child test results', async t => {
   })
   t.matchSnapshot(results, 'should get a results object')
 })
+
+t.test('saveFixture is inherited', t => {
+  t.plan(2)
+  const save = new Test({ name: 'save', saveFixture: true })
+  const nosave = new Test({ name: 'no save', saveFixture: false })
+  save.test('child', tt => {
+    t.equal(tt.saveFixture, true, 'inherited saveFixture=true')
+    tt.end()
+  })
+  save.end()
+  nosave.test('child', tt => {
+    t.equal(tt.saveFixture, false, 'inherited saveFixture=false')
+    tt.end()
+  })
+  nosave.end()
+})

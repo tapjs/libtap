@@ -61,6 +61,26 @@ Object {
 }
 `
 
+exports[`test/clean-yaml-object.js TAP saveFixture included if relevant > hide if false and env=0 1`] = `
+Object {}
+`
+
+exports[`test/clean-yaml-object.js TAP saveFixture included if relevant > hide if true and env=1 1`] = `
+Object {}
+`
+
+exports[`test/clean-yaml-object.js TAP saveFixture included if relevant > show if false and env=1 1`] = `
+Object {
+  "saveFixture": false,
+}
+`
+
+exports[`test/clean-yaml-object.js TAP saveFixture included if relevant > show if true and env=0 1`] = `
+Object {
+  "saveFixture": true,
+}
+`
+
 exports[`test/clean-yaml-object.js TAP string diffs > must match snapshot 1`] = `
 Object {
   "diff": String(
