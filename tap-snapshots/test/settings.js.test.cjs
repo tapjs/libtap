@@ -12,6 +12,7 @@ Object {
   "rimrafNeeded": "version specific",
   "rmdirRecursive": Function rmdirRecursive(dir, cb),
   "rmdirRecursiveSync": Function rmdirRecursiveSync(dir),
+  "snapshotFile": Function snapshotFile(cwd, main, argv),
   "stackUtils": Object {
     "ignoredPackages": Array [],
     "internals": Array [],

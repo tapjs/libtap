@@ -42,3 +42,11 @@ settings.rmdirRecursive = replacementAsync
 t.equal(settings.rimrafNeeded, false)
 t.equal(settings.rmdirRecursiveSync, replacement)
 t.equal(settings.rmdirRecursive, replacementAsync)
+
+t.equal(settings.snapshotFile('cwd', 'main', 'args'),
+  require('path').resolve('cwd', 'tap-snapshots', 'mainargs.test.cjs'),
+  'default function puts it in ./tap-snapshots')
+
+settings.snapshotFile = (cwd, main, args) => [cwd, main, args].join('X')
+t.equal(settings.snapshotFile('cwd', 'main', 'args'), 'cwdXmainXargs',
+  'can override snapshotFile setting function')
