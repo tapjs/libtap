@@ -10,6 +10,7 @@ async function runTests() {
   const t = require('.')
   const coverageMap = require('./coverage-map.js')
   const testESM = semver.gte(process.versions.node, '13.10.0')
+  const testTLA = semver.gte(process.versions.node, '14.8.0')
   const testFileGlob = testESM ? 'test/**/*.{js,mjs}' : 'test/**/*.js'
   const esLoaderHook = {
     NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --experimental-loader @istanbuljs/esm-loader-hook`
@@ -18,6 +19,10 @@ async function runTests() {
   t.jobs = os.cpus().length
 
   glob.sync(testFileGlob).forEach(file => {
+    if (file.endsWith('tla.mjs') && !testTLA) {
+      return;
+    }
+
     if (process.platform === 'win32' && file.includes('sigterm')) {
       // TODO: investigate proper Win32 replacements for these tests
       return;

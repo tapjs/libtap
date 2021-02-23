@@ -11,7 +11,8 @@
       "default": "./lib/tap.js"
     },
     "./settings": "./settings.js",
-    "./versions": "./versions.js"
+    "./versions": "./versions.js",
+    "./tla": "./lib/tla.mjs"
   },
   "engines": {
     "node": ">=10"

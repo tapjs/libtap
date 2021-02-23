@@ -9,6 +9,15 @@ let rmdirRecursiveSync
 let rmdirRecursive
 
 let hasFsRm = false
+let settingsResolve
+let settingsPromise
+function settingsPromiseInitialize() {
+  if (!settingsPromise) {
+    settingsPromise = new Promise(resolve => {
+      settingsResolve = resolve
+    })
+  }
+}
 
 module.exports = {
   atTap: false,
@@ -62,6 +71,15 @@ module.exports = {
   output: process.stdout,
   snapshotFile: (cwd, main, argv) => {
     return path.resolve(cwd, 'tap-snapshots', main + argv + '.test.cjs')
+  },
+  // This tells `libtap/tla` that settings are prepared
+  markAsReady() {
+    settingsPromiseInitialize();
+    settingsResolve();
+  },
+  waitForReady() {
+    settingsPromiseInitialize()
+    return settingsPromise;
   }
 }
 
