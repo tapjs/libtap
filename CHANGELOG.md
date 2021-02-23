@@ -1,3 +1,27 @@
+## 1.0.0
+
+### Breaking Changes
+
+* Run fixture cleanup asynchronously, after teardown
+* beforeEach / afterEach no longer received a callback, are assumed to be synchronous
+  if they do not return a promise
+* Improve tap-snapshot folder structure
+* Inherit t.saveFixture boolean
+
+### Features
+
+* Create fixture symlinks as junctions if pointing at directories
+* Add tap-testdir- to the generated test dir folder
+* Add `t.mock()` API
+* Add `t.before(fn)` API
+* Separate `t.match` and `t.has`
+* Add `t.notHas()` / `t.notHasStrict()` API's
+* Support `t.compareOptions` for configuring tcompare behavior
+* Resolve child test promise to results
+* Do not report only/grep filtered skips in test.lists
+* Make snapshot file location fully customizable
+
+
 ## 0.3.0
 
 ### Breaking Changes
