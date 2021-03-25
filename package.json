@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "async-hook-domain": "^2.0.1",
-    "bind-obj-methods": "^2.0.0",
+    "bind-obj-methods": "^3.0.0",
     "diff": "^4.0.2",
     "function-loop": "^2.0.1",
     "minipass": "^3.1.1",
