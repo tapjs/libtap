@@ -1295,6 +1295,12 @@ t.test('test dir name does not throw when no main module is present', t => {
 })
 
 t.test('fixture dir stuff', t => {
+  // unnamed test has default test dir name
+  t.test(t => {
+    const base = path.basename(t.testdirName)
+    t.equal(base, 'tap-testdir-test-fixture-dir-stuff-unnamed-test')
+    t.end()
+  })
   const tdn = t.testdirName
   t.throws(() => fs.statSync(tdn), 'doesnt exist yet')
   t.teardown(() => fs.statSync(tdn), 'exists in teardown')
