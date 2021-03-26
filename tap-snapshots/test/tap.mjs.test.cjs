@@ -5,7 +5,7 @@
  * Make sure to inspect the output below.  Do not ignore changes!
  */
 'use strict'
-exports[`test/libtap.mjs TAP libtap > must match snapshot 1`] = `
+exports[`test/tap.mjs TAP libtap > must match snapshot 1`] = `
 Array [
   "Spawn",
   "Stdin",

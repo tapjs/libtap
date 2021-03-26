@@ -2,6 +2,8 @@
 
 const semver = require('semver')
 
+const excludeTLA = semver.lt(process.versions.node, '14.8.0') ? ['!lib/tla.mjs'] : []
+
 module.exports = {
   all: true,
   checkCoverage: process.platform !== 'win32',
@@ -13,6 +15,7 @@ module.exports = {
   include: [
     'settings.js',
     'versions.js',
-    'lib/**'
+    'lib/**',
+    ...excludeTLA
   ]
 }

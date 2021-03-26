@@ -50,3 +50,15 @@ t.equal(settings.snapshotFile('cwd', 'main', 'args'),
 settings.snapshotFile = (cwd, main, args) => [cwd, main, args].join('X')
 t.equal(settings.snapshotFile('cwd', 'main', 'args'), 'cwdXmainXargs',
   'can override snapshotFile setting function')
+
+let isReady = false
+settings.waitForReady().then(() => {
+  isReady = true;
+})
+
+t.equal(isReady, false)
+
+settings.markAsReady()
+setTimeout(() => {
+  t.equal(isReady, true)
+})

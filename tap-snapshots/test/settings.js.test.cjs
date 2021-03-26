@@ -8,6 +8,7 @@
 exports[`test/settings.js TAP > must match snapshot 1`] = `
 Object {
   "atTap": false,
+  "markAsReady": Function markAsReady(),
   "output": "process.stdout",
   "rimrafNeeded": "version specific",
   "rmdirRecursive": Function rmdirRecursive(dir, cb),
@@ -18,5 +19,6 @@ Object {
     "internals": Array [],
   },
   "StackUtils": Function StackUtils(classStackUtils),
+  "waitForReady": Function waitForReady(),
 }
 `
