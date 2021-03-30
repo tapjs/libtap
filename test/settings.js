@@ -12,6 +12,9 @@ t.matchSnapshot({
   rimrafNeeded: 'version specific',
   rmdirRecursiveSync(dir) {},
   rmdirRecursive(dir, cb) {},
+  mkdirpNeeded: 'version specific',
+  mkdirRecursiveSync(dir) {},
+  mkdirRecursive(dir, cb) {},
   output: 'process.stdout',
   stackUtils: {
     ...settings.stackUtils,
@@ -35,6 +38,22 @@ t.throws(_ => {
   settings.rmdirRecursive = () => {}
 }, TypeError)
 
+t.throws(_ => {
+  settings.mkdirRecursiveSync = 'this is not a function'
+}, TypeError)
+
+t.throws(_ => {
+  settings.mkdirRecursiveSync = () => {}
+}, TypeError)
+
+t.throws(_ => {
+  settings.mkdirRecursive = 'this is not a function'
+}, TypeError)
+
+t.throws(_ => {
+  settings.mkdirRecursive = () => {}
+}, TypeError)
+
 const replacement = dir => {}
 const replacementAsync = (dir, cb) => {}
 settings.rmdirRecursiveSync = replacement
@@ -42,6 +61,12 @@ settings.rmdirRecursive = replacementAsync
 t.equal(settings.rimrafNeeded, false)
 t.equal(settings.rmdirRecursiveSync, replacement)
 t.equal(settings.rmdirRecursive, replacementAsync)
+
+settings.mkdirRecursiveSync = replacement
+settings.mkdirRecursive = replacementAsync
+t.equal(settings.mkdirpNeeded, false)
+t.equal(settings.mkdirRecursiveSync, replacement)
+t.equal(settings.mkdirRecursive, replacementAsync)
 
 t.equal(settings.snapshotFile('cwd', 'main', 'args'),
   require('path').resolve('cwd', 'tap-snapshots', 'mainargs.test.cjs'),
