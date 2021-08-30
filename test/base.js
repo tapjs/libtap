@@ -349,3 +349,37 @@ ok 7 - just a regular skip # SKIP filter: some other thing
 
   t.end()
 })
+
+t.test('works without process object, just no hrtime', t => {
+  const proc = process
+  t.teardown(() => process = proc)
+  global.process = null
+  const Base = t.mock('../lib/base.js', {
+    '../lib/process.js': t.mock('../lib/process.js'),
+  })
+  const b = new Base()
+  t.ok(b.passing())
+  b.parser.end('TAP version 13\nok\n1..1\n')
+  b.setEncoding('utf8')
+  t.equal(b.read(), 'TAP version 13\nok\n1..1\n')
+  t.equal(b.hrtime, null, 'no hrtime')
+  t.equal(b.time, null, 'no time')
+  t.end()
+})
+
+t.test('works without process.hrtime, just no hrtime', t => {
+  const { hrtime } = process
+  t.teardown(() => process.hrtime = hrtime)
+  process.hrtime = null
+  const Base = t.mock('../lib/base.js', {
+    '../lib/process.js': t.mock('../lib/process.js'),
+  })
+  const b = new Base()
+  t.ok(b.passing())
+  b.parser.end('TAP version 13\nok\n1..1\n')
+  b.setEncoding('utf8')
+  t.equal(b.read(), 'TAP version 13\nok\n1..1\n')
+  t.equal(b.hrtime, null, 'no hrtime')
+  t.equal(b.time, null, 'no time')
+  t.end()
+})

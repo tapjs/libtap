@@ -1,9 +1,11 @@
 'use strict'
 
 // Just a utility to clean up the snapshots for output tests
+// We use require('process') here rather than relying on global.process,
+// because some tests clobber that intentionally.
 
+const internals = Object.keys(require('process').binding('natives'))
 const yaml = require('tap-yaml')
-const internals = Object.keys(process.binding('natives'))
 
 module.exports = out => out
   // normalize new lines
@@ -63,11 +65,11 @@ module.exports = out => out
   .replace(/\n( *)timeout: (30000|240000)(\n|$)/g, '\n$1timeout: {default}$3')
 
   // fix references to cwd
-  .split(process.cwd()).join('{CWD}')
+  .split(require('process').cwd()).join('{CWD}')
   .split(require('path').resolve(__dirname, '..')).join('{TAPDIR}')
-  .split(process.execPath).join('{NODE}')
+  .split(require('process').execPath).join('{NODE}')
 
-  .split(process.env.HOME).join('{HOME}')
+  .split(require('process').env.HOME).join('{HOME}')
 
   // the arrows in source printing bits, make that consistent
   .replace(/^(\s*)-+\^$/mg, '$1--^')

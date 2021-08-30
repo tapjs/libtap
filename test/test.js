@@ -1288,6 +1288,8 @@ t.test('test dir name does not throw when no main module is present', t => {
   c.on('close', (code, signal) => {
     t.equal(code, 0)
     t.equal(signal, null)
+    // normalize slashes
+    t.cleanSnapshot = s => s.split('\\').join('/')
     t.matchSnapshot(Buffer.concat(out).toString('utf8'), 'stdout')
     t.matchSnapshot(Buffer.concat(err).toString('utf8'), 'stderr')
     t.end()
@@ -1694,4 +1696,55 @@ t.test('saveFixture is inherited', t => {
     tt.end()
   })
   nosave.end()
+})
+
+t.test('does not bork when process goes missing', t => {
+  const proc = process
+  t.teardown(() => global.process = proc)
+  global.process = null
+  const tt = new Test({ name: 'proc gone missing' })
+  tt.plan(1)
+  tt.test('child', tt => {
+    tt.plan(1)
+    tt.equal(1, 1, 'one is one')
+  })
+
+  const out = []
+  t.plan(1)
+  tt.on('data', c => out.push(c))
+  tt.on('end', () => t.matchSnapshot(Buffer.concat(out).toString()))
+})
+
+t.test('ok if process missing from the start', t => {
+  const proc = process
+  t.teardown(() => global.process = proc)
+  global.process = null
+  const Test = t.mock('../lib/test.js', {
+    '../lib/process.js': t.mock('../lib/process.js'),
+  })
+  const tt = new Test({ name: 'proc gone missing' })
+  tt.plan(1)
+  tt.test('child', tt => {
+    tt.plan(1)
+    tt.equal(1, 1, 'one is one')
+  })
+
+  const out = []
+  t.plan(1)
+  tt.on('data', c => out.push(c))
+  tt.on('end', () => t.matchSnapshot(Buffer.concat(out).toString()))
+})
+
+t.test('t.stdinOnly() throws without process.stdin', t => {
+  const proc = process
+  t.teardown(() => global.process = proc)
+  global.process = null
+  const Test = t.mock('../lib/test.js', {
+    '../lib/process.js': t.mock('../lib/process.js'),
+  })
+  const tt = new Test({ name: 'proc gone missing' })
+  t.throws(() => tt.stdinOnly(), {
+    message: 'cannot read stdin without stdin stream',
+  })
+  t.end()
 })

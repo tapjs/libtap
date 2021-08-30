@@ -2224,6 +2224,17 @@ not ok 1 - expect fail
 
 `
 
+exports[`test/test.js TAP does not bork when process goes missing > must match snapshot 1`] = `
+TAP version 13
+1..1
+# Subtest: child
+    1..1
+    ok 1 - one is one
+ok 1 - child # {time}
+
+
+`
+
 exports[`test/test.js TAP endAll direct while waiting on Promise rejection > result 1`] = `
 TAP version 13
 not ok 1 - expect rejected Promise
@@ -2307,6 +2318,17 @@ not ok 1 # {time}
 
 1..1
 # failed 1 test
+
+`
+
+exports[`test/test.js TAP ok if process missing from the start > must match snapshot 1`] = `
+TAP version 13
+1..1
+# Subtest: child
+    1..1
+    ok 1 - one is one
+ok 1 - child
+
 
 `
 

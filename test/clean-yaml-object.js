@@ -7,7 +7,9 @@ const dom = new Domain()
 dom.whosagooddomain = 'yes you are a good dog'
 
 const cases = [
-  [{
+  [() => {
+    settings.atTap = false
+  }, {
     domain: { some: 'object' },
     stack: 'this\nis\na\nstack\n',
     at: {
@@ -176,5 +178,24 @@ t.test('saveFixture included if relevant', t => {
   t.matchSnapshot(cyo({
     saveFixture: false,
   }), 'hide if false and env=0')
+  t.end()
+})
+
+t.test('ok if process missing from the start', t => {
+  const proc = process
+  t.teardown(() => global.process = proc)
+  global.process = null
+  const cyo = t.mock('../lib/clean-yaml-object.js', {
+    '../lib/process.js': t.mock('../lib/process.js'),
+  })
+  cases.forEach((c, i) => {
+    if (typeof c[0] === 'function')
+      c.shift()()
+    // the "at" field will be different or missing if process unavailable
+    const match = { ...c[1] }
+    const actual = cyo(c[0])
+    match.at = actual.at
+    t.match(actual, match, `test #${i}`)
+  })
   t.end()
 })

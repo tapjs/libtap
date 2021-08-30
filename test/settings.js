@@ -75,3 +75,14 @@ t.equal(settings.snapshotFile('cwd', 'main', 'args'),
 settings.snapshotFile = (cwd, main, args) => [cwd, main, args].join('X')
 t.equal(settings.snapshotFile('cwd', 'main', 'args'), 'cwdXmainXargs',
   'can override snapshotFile setting function')
+
+t.test('does not bork when no process object', t => {
+  const proc = process
+  t.teardown(() => process = proc)
+  global.process = null
+  const settings = t.mock('../settings.js', {
+    '../lib/process.js': t.mock('../lib/process.js'),
+  })
+  t.equal(settings.output, undefined, 'no output defined without process')
+  t.end()
+})
