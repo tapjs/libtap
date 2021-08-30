@@ -56,7 +56,8 @@ const main = () => {
       name: 'killa'
     })
     s.main(() => {
-      t.matchSnapshot(s.output)
+      t.match(s.output, 'SIGTERM\n')
+      t.match(s.output, 'not ok 1 - timeout!\n  ---\n  expired: killa\n  ...\n')
       t.end()
     })
   })

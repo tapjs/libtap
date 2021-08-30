@@ -60,18 +60,6 @@ ok 2 - node ./test/spawn.js skip-reason # SKIP for no raisins
 
 `
 
-exports[`test/spawn.js TAP timeout KILL > must match snapshot 1`] = `
-SIGTERM
-
-not ok 1 - timeout!
-  ---
-  expired: killa
-  ...
-1..1
-# failed 1 test
-
-`
-
 exports[`test/spawn.js TAP timeout update > must match snapshot 1`] = `
 TAP version 13
 # timeout=42069
