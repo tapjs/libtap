@@ -24,7 +24,7 @@
     "minipass": "^3.1.5",
     "own-or": "^1.0.0",
     "own-or-env": "^1.0.2",
-    "signal-exit": "^3.0.2",
+    "signal-exit": "^3.0.4",
     "stack-utils": "^2.0.4",
     "tap-parser": "^10.0.1",
     "tap-yaml": "^1.0.0",
