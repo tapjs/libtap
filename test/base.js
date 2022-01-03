@@ -383,3 +383,16 @@ t.test('works without process.hrtime, just no hrtime', t => {
   t.equal(b.time, null, 'no time')
   t.end()
 })
+
+t.test('do not unnecessarily log uncaughts while bailing out', t => {
+  const { error } = console
+  console.error = () => {
+    t.fail('should not console.error')
+  }
+  t.teardown(() => console.error = error)
+  const b = new Base({ bail: true })
+  b.parser.end('TAP version 13\nnot ok\n1..1\n')
+  b.threw(new Error('shhh, be still'))
+  t.equal(b.read().toString('utf8'), 'TAP version 13\nnot ok\nBail out!\n')
+  t.end()
+})

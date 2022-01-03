@@ -3333,8 +3333,9 @@ TAP version 13
           - {}
       ...
     
-    1..4
-    # failed 2 of 4 tests
+    ok 5 - expect uncaughtException
+    1..5
+    # failed 2 of 5 tests
 not ok 1 - parent # {time}
 
 1..1

@@ -217,7 +217,9 @@ t.test('short output checks', t => {
 
     'simulated uncaughtException throwing': tt => {
       tt.test('parent', tt => {
+        // expect 2
         tt.expectUncaughtException()
+        tt.expectUncaughtException({ message: 'bar' })
         const e = new Error('foo')
         e.tapCaught = 'uncaughtException'
         tt.threw(e)
@@ -236,6 +238,9 @@ t.test('short output checks', t => {
           tt.threw(e)
           tt.end()
         })
+        const e2 = new Error('bar')
+        e2.tapCaught = 'unhandledRejection'
+        tt.threw(e2)
         tt.end()
       })
       tt.end()
