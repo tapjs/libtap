@@ -1024,7 +1024,7 @@ not ok 4 - should fail
           tt.hasOwnProp(c, 'e', 'should fail')
     --^
           tt.hasOwnProp(c, 'f', 'should fail')
-          tt.end()
+          tt.hasOwnProp('asdf', 'length', 'should pass')
   stack: |
     {STACK}
   ...
@@ -1043,14 +1043,74 @@ not ok 5 - should fail
           tt.hasOwnProp(c, 'e', 'should fail')
           tt.hasOwnProp(c, 'f', 'should fail')
     --^
-          tt.end()
-        },
+          tt.hasOwnProp('asdf', 'length', 'should pass')
+          tt.test('invalid cases, all should fail', tt => {
   stack: |
     {STACK}
   ...
 
-1..5
-# failed 4 of 5 tests
+ok 6 - should pass
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot convert undefined or null to object
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: a
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasOwnProp(null, 'a')
+        --^
+                tt.hasOwnProp({}, null)
+                tt.hasOwnProp(null, null)
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern: null
+      source: |2
+                tt.hasOwnProp(null, 'a')
+                tt.hasOwnProp({}, null)
+        --^
+                tt.hasOwnProp(null, null)
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: null
+      source: |2
+                tt.hasOwnProp({}, null)
+                tt.hasOwnProp(null, null)
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..3
+    # failed 3 of 3 tests
+not ok 7 - invalid cases, all should fail # {time}
+
+1..7
+# failed 5 of 7 tests
 
 `
 
@@ -1167,14 +1227,77 @@ not ok 7 - should fail
           tt.hasOwnProps(c, ['d', 'f'], 'should pass')
           tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
     --^
-          tt.end()
-        },
+          tt.hasOwnProps('asdf', ['length'], 'should pass')
+          tt.test('invalid cases, all should fail', tt => {
   stack: |
     {STACK}
   ...
 
-1..7
-# failed 5 of 7 tests
+ok 8 - should pass
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot convert undefined or null to object
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - a
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasOwnProps(null, ['a'])
+        --^
+                tt.hasOwnProps({}, [null])
+                tt.hasOwnProps(null, [null])
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern:
+        - null
+      source: |2
+                tt.hasOwnProps(null, ['a'])
+                tt.hasOwnProps({}, [null])
+        --^
+                tt.hasOwnProps(null, [null])
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - null
+      source: |2
+                tt.hasOwnProps({}, [null])
+                tt.hasOwnProps(null, [null])
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..3
+    # failed 3 of 3 tests
+not ok 9 - invalid cases, all should fail # {time}
+
+1..9
+# failed 6 of 9 tests
 
 `
 
@@ -1217,7 +1340,7 @@ not ok 4 - should fail
           tt.hasProp(c, 'e', 'should fail')
     --^
           tt.hasProp(c, 'f', 'should fail')
-          tt.end()
+          tt.test('invalid cases, all should fail', tt => {
   stack: |
     {STACK}
   ...
@@ -1236,14 +1359,91 @@ not ok 5 - should fail
           tt.hasProp(c, 'e', 'should fail')
           tt.hasProp(c, 'f', 'should fail')
     --^
-          tt.end()
-        },
+          tt.test('invalid cases, all should fail', tt => {
+            tt.hasProp(null, 'a')
   stack: |
     {STACK}
   ...
 
-1..5
-# failed 3 of 5 tests
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot use 'in' operator to search for 'a' in null
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: a
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasProp(null, 'a')
+        --^
+                tt.hasProp({}, null)
+                tt.hasProp(null, null)
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern: null
+      source: |2
+                tt.hasProp(null, 'a')
+                tt.hasProp({}, null)
+        --^
+                tt.hasProp(null, null)
+                tt.hasProp('asdf', 'length')
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: null
+      source: |2
+                tt.hasProp({}, null)
+                tt.hasProp(null, null)
+        --^
+                tt.hasProp('asdf', 'length')
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 4 - Cannot use 'in' operator to search for 'length' in asdf
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: asdf
+      pattern: length
+      source: |2
+                tt.hasProp(null, null)
+                tt.hasProp('asdf', 'length')
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..4
+    # failed 4 of 4 tests
+not ok 6 - invalid cases, all should fail # {time}
+
+1..6
+# failed 4 of 6 tests
 
 `
 
@@ -1291,7 +1491,7 @@ not ok 5 - should fail
           tt.hasProps(c, ['d', 'e'], 'should fail')
     --^
           tt.hasProps(c, ['d', 'f'], 'should fail')
-          tt.end()
+          tt.test('invalid cases, all should fail', tt => {
   stack: |
     {STACK}
   ...
@@ -1312,14 +1512,95 @@ not ok 6 - should fail
           tt.hasProps(c, ['d', 'e'], 'should fail')
           tt.hasProps(c, ['d', 'f'], 'should fail')
     --^
-          tt.end()
-        },
+          tt.test('invalid cases, all should fail', tt => {
+            tt.hasProps('asdf', ['length'])
   stack: |
     {STACK}
   ...
 
-1..6
-# failed 3 of 6 tests
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot use 'in' operator to search for 'length' in asdf
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: asdf
+      pattern:
+        - length
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasProps('asdf', ['length'])
+        --^
+                tt.hasProps(null, ['a'])
+                tt.hasProps({}, [null])
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - Cannot use 'in' operator to search for 'a' in null
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - a
+      source: |2
+                tt.hasProps('asdf', ['length'])
+                tt.hasProps(null, ['a'])
+        --^
+                tt.hasProps({}, [null])
+                tt.hasProps(null, [null])
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern:
+        - null
+      source: |2
+                tt.hasProps(null, ['a'])
+                tt.hasProps({}, [null])
+        --^
+                tt.hasProps(null, [null])
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 4 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - null
+      source: |2
+                tt.hasProps({}, [null])
+                tt.hasProps(null, [null])
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..4
+    # failed 4 of 4 tests
+not ok 7 - invalid cases, all should fail # {time}
+
+1..7
+# failed 4 of 7 tests
 
 `
 
