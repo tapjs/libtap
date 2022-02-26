@@ -389,6 +389,13 @@ t.test('assertions and weird stuff', t => {
       tt.hasProp(c, 'd', 'should pass')
       tt.hasProp(c, 'e', 'should fail')
       tt.hasProp(c, 'f', 'should fail')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasProp(null, 'a')
+        tt.hasProp({}, null)
+        tt.hasProp(null, null)
+        tt.hasProp('asdf', 'length')
+        tt.end()
+      })
       tt.end()
     },
 
@@ -400,6 +407,13 @@ t.test('assertions and weird stuff', t => {
       tt.hasOwnProp(c, 'd', 'should pass')
       tt.hasOwnProp(c, 'e', 'should fail')
       tt.hasOwnProp(c, 'f', 'should fail')
+      tt.hasOwnProp('asdf', 'length', 'should pass')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasOwnProp(null, 'a')
+        tt.hasOwnProp({}, null)
+        tt.hasOwnProp(null, null)
+        tt.end()
+      })
       tt.end()
     },
 
@@ -412,6 +426,13 @@ t.test('assertions and weird stuff', t => {
       tt.hasProps(c, ['d'], 'should pass')
       tt.hasProps(c, ['d', 'e'], 'should fail')
       tt.hasProps(c, ['d', 'f'], 'should fail')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasProps('asdf', ['length'])
+        tt.hasProps(null, ['a'])
+        tt.hasProps({}, [null])
+        tt.hasProps(null, [null])
+        tt.end()
+      })
       tt.end()
     },
 
@@ -425,6 +446,13 @@ t.test('assertions and weird stuff', t => {
       tt.hasOwnProps(c, ['d', 'e'], 'should fail')
       tt.hasOwnProps(c, ['d', 'f'], 'should pass')
       tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+      tt.hasOwnProps('asdf', ['length'], 'should pass')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasOwnProps(null, ['a'])
+        tt.hasOwnProps({}, [null])
+        tt.hasOwnProps(null, [null])
+        tt.end()
+      })
       tt.end()
     },
 
