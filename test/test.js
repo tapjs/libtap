@@ -381,6 +381,53 @@ t.test('assertions and weird stuff', t => {
       tt.end()
     },
 
+    hasProp: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasProp(c, 'a', 'should pass')
+      tt.hasProp(c, 'c', 'should fail')
+      tt.hasProp(c, 'd', 'should pass')
+      tt.hasProp(c, 'e', 'should fail')
+      tt.hasProp(c, 'f', 'should fail')
+      tt.end()
+    },
+
+    hasOwnProp: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasOwnProp(c, 'a', 'should fail')
+      tt.hasOwnProp(c, 'c', 'should fail')
+      tt.hasOwnProp(c, 'd', 'should pass')
+      tt.hasOwnProp(c, 'e', 'should fail')
+      tt.hasOwnProp(c, 'f', 'should fail')
+      tt.end()
+    },
+
+    hasProps: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasProps(c, ['a'], 'should pass')
+      tt.hasProps(c, ['a', 'd'], 'should pass')
+      tt.hasProps(c, ['a', 'c'], 'should fail')
+      tt.hasProps(c, ['d'], 'should pass')
+      tt.hasProps(c, ['d', 'e'], 'should fail')
+      tt.hasProps(c, ['d', 'f'], 'should fail')
+      tt.end()
+    },
+
+    hasOwnProps: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+      tt.hasOwnProps(c, ['a'], 'should fail')
+      tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+      tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+      tt.hasOwnProps(c, ['d'], 'should pass')
+      tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+      tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+      tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+      tt.end()
+    },
+
     match: tt => {
       tt.match({ a: 'b', c: /asdf/ }, { a: String, c: RegExp })
       tt.match({ a: 'b', c: /asdf/ }, { a: 'asdf', c: 1 })

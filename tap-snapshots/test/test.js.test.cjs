@@ -966,6 +966,363 @@ ok 5 - should contain all provided fields # TODO
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff hasOwnProp > output 1`] = `
+TAP version 13
+not ok 1 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: a
+  source: |2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+          tt.hasOwnProp(c, 'a', 'should fail')
+    --^
+          tt.hasOwnProp(c, 'c', 'should fail')
+          tt.hasOwnProp(c, 'd', 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: c
+  source: |2
+          tt.hasOwnProp(c, 'a', 'should fail')
+          tt.hasOwnProp(c, 'c', 'should fail')
+    --^
+          tt.hasOwnProp(c, 'd', 'should pass')
+          tt.hasOwnProp(c, 'e', 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 3 - should pass
+not ok 4 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: e
+  source: |2
+          tt.hasOwnProp(c, 'd', 'should pass')
+          tt.hasOwnProp(c, 'e', 'should fail')
+    --^
+          tt.hasOwnProp(c, 'f', 'should fail')
+          tt.end()
+  stack: |
+    {STACK}
+  ...
+
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: f
+  source: |2
+          tt.hasOwnProp(c, 'e', 'should fail')
+          tt.hasOwnProp(c, 'f', 'should fail')
+    --^
+          tt.end()
+        },
+  stack: |
+    {STACK}
+  ...
+
+1..5
+# failed 4 of 5 tests
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff hasOwnProps > output 1`] = `
+TAP version 13
+not ok 1 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - a
+  source: >2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+          tt.hasOwnProps(c, ['a'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - a
+    - d
+  source: |2
+          tt.hasOwnProps(c, ['a'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+          tt.hasOwnProps(c, ['d'], 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 3 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - a
+    - c
+  source: |2
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['d'], 'should pass')
+          tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 4 - should pass
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - d
+    - e
+  source: |2
+          tt.hasOwnProps(c, ['d'], 'should pass')
+          tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+          tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 6 - should pass
+not ok 7 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - d
+    - f
+    - g
+  source: |2
+          tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+          tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+    --^
+          tt.end()
+        },
+  stack: |
+    {STACK}
+  ...
+
+1..7
+# failed 5 of 7 tests
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff hasProp > output 1`] = `
+TAP version 13
+ok 1 - should pass
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: c
+  source: |2
+          tt.hasProp(c, 'a', 'should pass')
+          tt.hasProp(c, 'c', 'should fail')
+    --^
+          tt.hasProp(c, 'd', 'should pass')
+          tt.hasProp(c, 'e', 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 3 - should pass
+not ok 4 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: e
+  source: |2
+          tt.hasProp(c, 'd', 'should pass')
+          tt.hasProp(c, 'e', 'should fail')
+    --^
+          tt.hasProp(c, 'f', 'should fail')
+          tt.end()
+  stack: |
+    {STACK}
+  ...
+
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: f
+  source: |2
+          tt.hasProp(c, 'e', 'should fail')
+          tt.hasProp(c, 'f', 'should fail')
+    --^
+          tt.end()
+        },
+  stack: |
+    {STACK}
+  ...
+
+1..5
+# failed 3 of 5 tests
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff hasProps > output 1`] = `
+TAP version 13
+ok 1 - should pass
+ok 2 - should pass
+not ok 3 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - a
+    - c
+  source: |2
+          tt.hasProps(c, ['a', 'd'], 'should pass')
+          tt.hasProps(c, ['a', 'c'], 'should fail')
+    --^
+          tt.hasProps(c, ['d'], 'should pass')
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 4 - should pass
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - d
+    - e
+  source: |2
+          tt.hasProps(c, ['d'], 'should pass')
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+    --^
+          tt.hasProps(c, ['d', 'f'], 'should fail')
+          tt.end()
+  stack: |
+    {STACK}
+  ...
+
+not ok 6 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - d
+    - f
+  source: |2
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+          tt.hasProps(c, ['d', 'f'], 'should fail')
+    --^
+          tt.end()
+        },
+  stack: |
+    {STACK}
+  ...
+
+1..6
+# failed 3 of 6 tests
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff hasStrict > output 1`] = `
 TAP version 13
 not ok 1 - should fail
