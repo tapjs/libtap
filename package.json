@@ -29,8 +29,7 @@
     "tap-parser": "^10.0.1",
     "tap-yaml": "^1.0.0",
     "tcompare": "^5.0.6",
-    "trivial-deferred": "^1.0.1",
-    "yapool": "^1.0.0"
+    "trivial-deferred": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
