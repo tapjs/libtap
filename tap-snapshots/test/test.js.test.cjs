@@ -1116,7 +1116,70 @@ not ok 7 - invalid cases, all should fail # {time}
 
 exports[`test/test.js TAP assertions and weird stuff hasOwnProps > output 1`] = `
 TAP version 13
-not ok 1 - should fail
+not ok 1 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern: null
+  source: >2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+          tt.hasOwnProps(c, null, 'should fail (falsey)')
+    --^
+          tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern: hello
+  source: |2
+          tt.hasOwnProps(c, null, 'should fail (falsey)')
+          tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+    --^
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+          tt.hasOwnProps(c, ['a'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 3 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern: {}
+  source: |2
+          tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+    --^
+          tt.hasOwnProps(c, ['a'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 4 - should fail
   ---
   at:
     line: #
@@ -1128,8 +1191,8 @@ not ok 1 - should fail
     f: f
   pattern:
     - a
-  source: >2
-          const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+  source: |2
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
           tt.hasOwnProps(c, ['a'], 'should fail')
     --^
           tt.hasOwnProps(c, ['a', 'd'], 'should fail')
@@ -1138,7 +1201,7 @@ not ok 1 - should fail
     {STACK}
   ...
 
-not ok 2 - should fail
+not ok 5 - should fail
   ---
   at:
     line: #
@@ -1161,7 +1224,7 @@ not ok 2 - should fail
     {STACK}
   ...
 
-not ok 3 - should fail
+not ok 6 - should fail
   ---
   at:
     line: #
@@ -1179,13 +1242,36 @@ not ok 3 - should fail
           tt.hasOwnProps(c, ['a', 'c'], 'should fail')
     --^
           tt.hasOwnProps(c, ['d'], 'should pass')
-          tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+          tt.hasOwnProps(c, new Set(['d']), 'should pass (Set is iterable)')
   stack: |
     {STACK}
   ...
 
-ok 4 - should pass
-not ok 5 - should fail
+ok 7 - should pass
+ok 8 - should pass (Set is iterable)
+not ok 9 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - d
+  source: >2
+          tt.hasOwnProps(c, new Set(['d']), 'should pass (Set is iterable)')
+          tt.hasOwnProps(c, new String('d'), 'should fail (even though String is iterable)')
+    --^
+          tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+          tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 10 - should fail
   ---
   at:
     line: #
@@ -1198,8 +1284,8 @@ not ok 5 - should fail
   pattern:
     - d
     - e
-  source: |2
-          tt.hasOwnProps(c, ['d'], 'should pass')
+  source: >2
+          tt.hasOwnProps(c, new String('d'), 'should fail (even though String is iterable)')
           tt.hasOwnProps(c, ['d', 'e'], 'should fail')
     --^
           tt.hasOwnProps(c, ['d', 'f'], 'should pass')
@@ -1208,8 +1294,8 @@ not ok 5 - should fail
     {STACK}
   ...
 
-ok 6 - should pass
-not ok 7 - should fail
+ok 11 - should pass
+not ok 12 - should fail
   ---
   at:
     line: #
@@ -1233,7 +1319,7 @@ not ok 7 - should fail
     {STACK}
   ...
 
-ok 8 - should pass
+ok 13 - should pass
 # Subtest: invalid cases, all should fail
     not ok 1 - Cannot convert undefined or null to object
       ---
@@ -1294,10 +1380,10 @@ ok 8 - should pass
     
     1..3
     # failed 3 of 3 tests
-not ok 9 - invalid cases, all should fail # {time}
+not ok 14 - invalid cases, all should fail # {time}
 
-1..9
-# failed 6 of 9 tests
+1..14
+# failed 10 of 14 tests
 
 `
 
@@ -1449,9 +1535,68 @@ not ok 6 - invalid cases, all should fail # {time}
 
 exports[`test/test.js TAP assertions and weird stuff hasProps > output 1`] = `
 TAP version 13
-ok 1 - should pass
-ok 2 - should pass
-not ok 3 - should fail
+not ok 1 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: null
+  source: |2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+          tt.hasProps(c, null, 'should fail (falsey)')
+    --^
+          tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: hello
+  source: |2
+          tt.hasProps(c, null, 'should fail (falsey)')
+          tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+    --^
+          tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+  stack: |
+    {STACK}
+  ...
+
+not ok 3 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: {}
+  source: |2
+          tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+    --^
+  
+          tt.hasProps(c, ['a'], 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+ok 4 - should pass
+ok 5 - should pass
+not ok 6 - should fail
   ---
   at:
     line: #
@@ -1468,13 +1613,35 @@ not ok 3 - should fail
           tt.hasProps(c, ['a', 'c'], 'should fail')
     --^
           tt.hasProps(c, ['d'], 'should pass')
-          tt.hasProps(c, ['d', 'e'], 'should fail')
+          tt.hasProps(c, new Set(['d']), 'should pass (Set is iterable)')
   stack: |
     {STACK}
   ...
 
-ok 4 - should pass
-not ok 5 - should fail
+ok 7 - should pass
+ok 8 - should pass (Set is iterable)
+not ok 9 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - d
+  source: >2
+          tt.hasProps(c, new Set(['d']), 'should pass (Set is iterable)')
+          tt.hasProps(c, new String('d'), 'should fail (even though String is iterable)')
+    --^
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+          tt.hasProps(c, ['d', 'f'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 10 - should fail
   ---
   at:
     line: #
@@ -1486,8 +1653,8 @@ not ok 5 - should fail
   pattern:
     - d
     - e
-  source: |2
-          tt.hasProps(c, ['d'], 'should pass')
+  source: >2
+          tt.hasProps(c, new String('d'), 'should fail (even though String is iterable)')
           tt.hasProps(c, ['d', 'e'], 'should fail')
     --^
           tt.hasProps(c, ['d', 'f'], 'should fail')
@@ -1496,7 +1663,7 @@ not ok 5 - should fail
     {STACK}
   ...
 
-not ok 6 - should fail
+not ok 11 - should fail
   ---
   at:
     line: #
@@ -1597,10 +1764,10 @@ not ok 6 - should fail
     
     1..4
     # failed 4 of 4 tests
-not ok 7 - invalid cases, all should fail # {time}
+not ok 12 - invalid cases, all should fail # {time}
 
-1..7
-# failed 4 of 7 tests
+1..12
+# failed 8 of 12 tests
 
 `
 
