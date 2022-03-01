@@ -420,10 +420,16 @@ t.test('assertions and weird stuff', t => {
     hasProps: tt => {
       const p = { a: 'b', c: undefined, d: undefined }
       const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasProps(c, null, 'should fail (falsey)')
+      tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+      tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+
       tt.hasProps(c, ['a'], 'should pass')
       tt.hasProps(c, ['a', 'd'], 'should pass')
       tt.hasProps(c, ['a', 'c'], 'should fail')
       tt.hasProps(c, ['d'], 'should pass')
+      tt.hasProps(c, new Set(['d']), 'should pass (Set is iterable)')
+      tt.hasProps(c, new String('d'), 'should fail (even though String is iterable)')
       tt.hasProps(c, ['d', 'e'], 'should fail')
       tt.hasProps(c, ['d', 'f'], 'should fail')
       tt.test('invalid cases, all should fail', tt => {
@@ -439,10 +445,15 @@ t.test('assertions and weird stuff', t => {
     hasOwnProps: tt => {
       const p = { a: 'b', c: undefined, d: undefined }
       const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+      tt.hasOwnProps(c, null, 'should fail (falsey)')
+      tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+      tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
       tt.hasOwnProps(c, ['a'], 'should fail')
       tt.hasOwnProps(c, ['a', 'd'], 'should fail')
       tt.hasOwnProps(c, ['a', 'c'], 'should fail')
       tt.hasOwnProps(c, ['d'], 'should pass')
+      tt.hasOwnProps(c, new Set(['d']), 'should pass (Set is iterable)')
+      tt.hasOwnProps(c, new String('d'), 'should fail (even though String is iterable)')
       tt.hasOwnProps(c, ['d', 'e'], 'should fail')
       tt.hasOwnProps(c, ['d', 'f'], 'should pass')
       tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
