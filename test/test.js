@@ -1309,6 +1309,38 @@ t.test('snapshots', async t => {
   t.end()
 })
 
+t.test('snapshot file per test case', async t => {
+  const dir = t.testdir({ 'tap-snapshots': {} })
+  const tt = new Test({ name: 'parent', snapshot: true })
+  tt.setEncoding('utf8')
+  tt.snapshotFile = dir + '/tap-snapshots/parent.test.cjs'
+  tt.matchSnapshot('snapshot in main before subs')
+  tt.test('sub 1', tt => {
+    tt.snapshotFile = dir + '/tap-snapshots/sub1.test.cjs'
+    tt.matchSnapshot('sub1')
+    tt.end()
+  })
+  tt.matchSnapshot('snapshot in main between subs')
+  tt.test('sub 2', tt => {
+    tt.snapshotFile = dir + '/tap-snapshots/sub2.test.cjs'
+    tt.matchSnapshot('sub2')
+    tt.end()
+  })
+  tt.test('sub 3 (using main)', tt => {
+    tt.matchSnapshot('sub 3 (using main)')
+    tt.end()
+  })
+  tt.matchSnapshot('snapshot in main after subs')
+  tt.end()
+
+  t.matchSnapshot(tt.read(), 'output')
+  const entries = fs.readdirSync(dir + '/tap-snapshots')
+  t.matchSnapshot(entries, 'snapshot dir entries')
+  for (const f of entries) {
+    t.matchSnapshot(require(`${dir}/tap-snapshots/${f}`), f)
+  }
+})
+
 t.test('endAll direct while waiting on a resolving promise', t => {
   t.plan(1)
   const tt = new Test()

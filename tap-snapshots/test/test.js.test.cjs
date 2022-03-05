@@ -4358,6 +4358,83 @@ ok 1 - (unnamed test) # SKIP filter: only
 
 `
 
+exports[`test/test.js TAP snapshot file per test case > output 1`] = `
+TAP version 13
+ok 1 - must match snapshot
+# Subtest: sub 1
+    ok 1 - must match snapshot
+    1..1
+ok 2 - sub 1 # {time}
+
+ok 3 - must match snapshot
+# Subtest: sub 2
+    ok 1 - must match snapshot
+    1..1
+ok 4 - sub 2 # {time}
+
+# Subtest: sub 3 (using main)
+    ok 1 - must match snapshot
+    1..1
+ok 5 - sub 3 (using main) # {time}
+
+ok 6 - must match snapshot
+1..6
+
+`
+
+exports[`test/test.js TAP snapshot file per test case > parent.test.cjs 1`] = `
+Object {
+  "test/test.js parent > must match snapshot 1": String(
+    
+    snapshot in main before subs
+    
+  ),
+  "test/test.js parent > must match snapshot 2": String(
+    
+    snapshot in main between subs
+    
+  ),
+  "test/test.js parent > must match snapshot 3": String(
+    
+    snapshot in main after subs
+    
+  ),
+  "test/test.js parent sub 3 (using main) > must match snapshot 1": String(
+    
+    sub 3 (using main)
+    
+  ),
+}
+`
+
+exports[`test/test.js TAP snapshot file per test case > snapshot dir entries 1`] = `
+Array [
+  "parent.test.cjs",
+  "sub1.test.cjs",
+  "sub2.test.cjs",
+]
+`
+
+exports[`test/test.js TAP snapshot file per test case > sub1.test.cjs 1`] = `
+Object {
+  "test/test.js parent sub 1 > must match snapshot 1": String(
+    
+    sub1
+    
+  ),
+}
+`
+
+exports[`test/test.js TAP snapshot file per test case > sub2.test.cjs 1`] = `
+Object {
+  "test/test.js parent sub 2 > must match snapshot 1": String(
+    
+    sub2
+    
+  ),
+}
+`
+
 exports[`test/test.js TAP snapshots > saving the snapshot 1`] = `
 TAP version 13
 # Subtest: child test
