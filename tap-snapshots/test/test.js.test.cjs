@@ -2394,12 +2394,15 @@ not ok 6 - expect resolving Promise
     message: ouch
     stack: |
       {STACK}
+  message: ouch
   source: |2
           tt.resolves(() => {}, 'fail: no promise')
           tt.resolves(() => Promise.reject(new Error('ouch')))
     --^
           tt.resolves(() => Promise.reject('ouch string'))
           tt.end()
+  stack: |
+    {STACK}
   ...
 
 not ok 7 - expect resolving Promise
@@ -2408,7 +2411,9 @@ not ok 7 - expect resolving Promise
     line: #
     column: #
     file: test/test.js
+  error: ouch string
   found: ouch string
+  message: null
   source: |2
           tt.resolves(() => Promise.reject(new Error('ouch')))
           tt.resolves(() => Promise.reject('ouch string'))
