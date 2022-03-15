@@ -622,6 +622,8 @@ t.test('assertions and weird stuff', t => {
       tt.resolves(new Promise(r => r(420)), 'passing promise')
       tt.resolves(() => new Promise(r => r(420)), 'passing promise fn')
       tt.resolves(() => {}, 'fail: no promise')
+      tt.resolves(() => Promise.reject(new Error('ouch')))
+      tt.resolves(() => Promise.reject('ouch string'))
       tt.end()
     },
 

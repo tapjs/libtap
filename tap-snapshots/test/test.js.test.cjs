@@ -2378,12 +2378,47 @@ not ok 5 - fail: no promise
           tt.resolves(() => new Promise(r => r(420)), 'passing promise fn')
           tt.resolves(() => {}, 'fail: no promise')
     --^
+          tt.resolves(() => Promise.reject(new Error('ouch')))
+          tt.resolves(() => Promise.reject('ouch string'))
+  ...
+
+not ok 6 - expect resolving Promise
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    !error
+    name: Error
+    message: ouch
+    stack: |
+      {STACK}
+  source: |2
+          tt.resolves(() => {}, 'fail: no promise')
+          tt.resolves(() => Promise.reject(new Error('ouch')))
+    --^
+          tt.resolves(() => Promise.reject('ouch string'))
+          tt.end()
+  ...
+
+not ok 7 - expect resolving Promise
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found: ouch string
+  source: |2
+          tt.resolves(() => Promise.reject(new Error('ouch')))
+          tt.resolves(() => Promise.reject('ouch string'))
+    --^
           tt.end()
         },
   ...
 
-1..5
-# failed 1 of 5 tests
+1..7
+# failed 3 of 7 tests
 # todo: 1
 
 `
