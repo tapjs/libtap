@@ -966,6 +966,811 @@ ok 5 - should contain all provided fields # TODO
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff hasOwnProp > output 1`] = `
+TAP version 13
+not ok 1 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: a
+  source: |2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+          tt.hasOwnProp(c, 'a', 'should fail')
+    --^
+          tt.hasOwnProp(c, 'c', 'should fail')
+          tt.hasOwnProp(c, 'd', 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: c
+  source: |2
+          tt.hasOwnProp(c, 'a', 'should fail')
+          tt.hasOwnProp(c, 'c', 'should fail')
+    --^
+          tt.hasOwnProp(c, 'd', 'should pass')
+          tt.hasOwnProp(c, 'e', 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 3 - should pass
+not ok 4 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: e
+  source: |2
+          tt.hasOwnProp(c, 'd', 'should pass')
+          tt.hasOwnProp(c, 'e', 'should fail')
+    --^
+          tt.hasOwnProp(c, 'f', 'should fail')
+          tt.hasOwnProp('asdf', 'length', 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: f
+  source: |2
+          tt.hasOwnProp(c, 'e', 'should fail')
+          tt.hasOwnProp(c, 'f', 'should fail')
+    --^
+          tt.hasOwnProp('asdf', 'length', 'should pass')
+          tt.test('invalid cases, all should fail', tt => {
+  stack: |
+    {STACK}
+  ...
+
+ok 6 - should pass
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot convert undefined or null to object
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: a
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasOwnProp(null, 'a')
+        --^
+                tt.hasOwnProp({}, null)
+                tt.hasOwnProp(null, null)
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern: null
+      source: |2
+                tt.hasOwnProp(null, 'a')
+                tt.hasOwnProp({}, null)
+        --^
+                tt.hasOwnProp(null, null)
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: null
+      source: |2
+                tt.hasOwnProp({}, null)
+                tt.hasOwnProp(null, null)
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..3
+    # failed 3 of 3 tests
+not ok 7 - invalid cases, all should fail # {time}
+
+1..7
+# failed 5 of 7 tests
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff hasOwnProps > output 1`] = `
+TAP version 13
+not ok 1 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern: null
+  source: >2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+          tt.hasOwnProps(c, null, 'should fail (falsey)')
+    --^
+          tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern: hello
+  source: |2
+          tt.hasOwnProps(c, null, 'should fail (falsey)')
+          tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+    --^
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+          tt.hasOwnProps(c, ['a'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 3 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern: {}
+  source: |2
+          tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+    --^
+          tt.hasOwnProps(c, ['a'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 4 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - a
+  source: |2
+          tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+          tt.hasOwnProps(c, ['a'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - a
+    - d
+  source: |2
+          tt.hasOwnProps(c, ['a'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+          tt.hasOwnProps(c, ['d'], 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 6 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - a
+    - c
+  source: |2
+          tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+          tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['d'], 'should pass')
+          tt.hasOwnProps(c, new Set(['d']), 'should pass (Set is iterable)')
+  stack: |
+    {STACK}
+  ...
+
+ok 7 - should pass
+ok 8 - should pass (Set is iterable)
+not ok 9 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - d
+  source: >2
+          tt.hasOwnProps(c, new Set(['d']), 'should pass (Set is iterable)')
+          tt.hasOwnProps(c, new String('d'), 'should fail (even though String is iterable)')
+    --^
+          tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+          tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+not ok 10 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - d
+    - e
+  source: >2
+          tt.hasOwnProps(c, new String('d'), 'should fail (even though String is iterable)')
+          tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+    --^
+          tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+          tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 11 - should pass
+not ok 12 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+    f: f
+  pattern:
+    - d
+    - f
+    - g
+  source: |2
+          tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+          tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+    --^
+          tt.hasOwnProps('asdf', ['length'], 'should pass')
+          tt.test('invalid cases, all should fail', tt => {
+  stack: |
+    {STACK}
+  ...
+
+ok 13 - should pass
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot convert undefined or null to object
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - a
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasOwnProps(null, ['a'])
+        --^
+                tt.hasOwnProps({}, [null])
+                tt.hasOwnProps(null, [null])
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern:
+        - null
+      source: |2
+                tt.hasOwnProps(null, ['a'])
+                tt.hasOwnProps({}, [null])
+        --^
+                tt.hasOwnProps(null, [null])
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - null
+      source: |2
+                tt.hasOwnProps({}, [null])
+                tt.hasOwnProps(null, [null])
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..3
+    # failed 3 of 3 tests
+not ok 14 - invalid cases, all should fail # {time}
+
+1..14
+# failed 10 of 14 tests
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff hasProp > output 1`] = `
+TAP version 13
+ok 1 - should pass
+not ok 2 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: c
+  source: |2
+          tt.hasProp(c, 'a', 'should pass')
+          tt.hasProp(c, 'c', 'should fail')
+    --^
+          tt.hasProp(c, 'd', 'should pass')
+          tt.hasProp(c, 'e', 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+ok 3 - should pass
+not ok 4 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: e
+  source: |2
+          tt.hasProp(c, 'd', 'should pass')
+          tt.hasProp(c, 'e', 'should fail')
+    --^
+          tt.hasProp(c, 'f', 'should fail')
+          tt.test('invalid cases, all should fail', tt => {
+  stack: |
+    {STACK}
+  ...
+
+not ok 5 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: f
+  source: |2
+          tt.hasProp(c, 'e', 'should fail')
+          tt.hasProp(c, 'f', 'should fail')
+    --^
+          tt.test('invalid cases, all should fail', tt => {
+            tt.hasProp(null, 'a')
+  stack: |
+    {STACK}
+  ...
+
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot use 'in' operator to search for 'a' in null
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: a
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasProp(null, 'a')
+        --^
+                tt.hasProp({}, null)
+                tt.hasProp(null, null)
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern: null
+      source: |2
+                tt.hasProp(null, 'a')
+                tt.hasProp({}, null)
+        --^
+                tt.hasProp(null, null)
+                tt.hasProp('asdf', 'length')
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern: null
+      source: |2
+                tt.hasProp({}, null)
+                tt.hasProp(null, null)
+        --^
+                tt.hasProp('asdf', 'length')
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 4 - Cannot use 'in' operator to search for 'length' in asdf
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: asdf
+      pattern: length
+      source: |2
+                tt.hasProp(null, null)
+                tt.hasProp('asdf', 'length')
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..4
+    # failed 4 of 4 tests
+not ok 6 - invalid cases, all should fail # {time}
+
+1..6
+# failed 4 of 6 tests
+
+`
+
+exports[`test/test.js TAP assertions and weird stuff hasProps > output 1`] = `
+TAP version 13
+not ok 1 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: null
+  source: |2
+          const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+          tt.hasProps(c, null, 'should fail (falsey)')
+    --^
+          tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: hello
+  source: |2
+          tt.hasProps(c, null, 'should fail (falsey)')
+          tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+    --^
+          tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+  stack: |
+    {STACK}
+  ...
+
+not ok 3 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern: {}
+  source: |2
+          tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+          tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+    --^
+  
+          tt.hasProps(c, ['a'], 'should pass')
+  stack: |
+    {STACK}
+  ...
+
+ok 4 - should pass
+ok 5 - should pass
+not ok 6 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - a
+    - c
+  source: |2
+          tt.hasProps(c, ['a', 'd'], 'should pass')
+          tt.hasProps(c, ['a', 'c'], 'should fail')
+    --^
+          tt.hasProps(c, ['d'], 'should pass')
+          tt.hasProps(c, new Set(['d']), 'should pass (Set is iterable)')
+  stack: |
+    {STACK}
+  ...
+
+ok 7 - should pass
+ok 8 - should pass (Set is iterable)
+not ok 9 - property list must be iterable object
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - d
+  source: >2
+          tt.hasProps(c, new Set(['d']), 'should pass (Set is iterable)')
+          tt.hasProps(c, new String('d'), 'should fail (even though String is iterable)')
+    --^
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+          tt.hasProps(c, ['d', 'f'], 'should fail')
+  stack: |
+    {STACK}
+  ...
+
+not ok 10 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - d
+    - e
+  source: >2
+          tt.hasProps(c, new String('d'), 'should fail (even though String is iterable)')
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+    --^
+          tt.hasProps(c, ['d', 'f'], 'should fail')
+          tt.test('invalid cases, all should fail', tt => {
+  stack: |
+    {STACK}
+  ...
+
+not ok 11 - should fail
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  found:
+    d: d
+    e: null
+  pattern:
+    - d
+    - f
+  source: |2
+          tt.hasProps(c, ['d', 'e'], 'should fail')
+          tt.hasProps(c, ['d', 'f'], 'should fail')
+    --^
+          tt.test('invalid cases, all should fail', tt => {
+            tt.hasProps('asdf', ['length'])
+  stack: |
+    {STACK}
+  ...
+
+# Subtest: invalid cases, all should fail
+    not ok 1 - Cannot use 'in' operator to search for 'length' in asdf
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: asdf
+      pattern:
+        - length
+      source: |2
+              tt.test('invalid cases, all should fail', tt => {
+                tt.hasProps('asdf', ['length'])
+        --^
+                tt.hasProps(null, ['a'])
+                tt.hasProps({}, [null])
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 2 - Cannot use 'in' operator to search for 'a' in null
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - a
+      source: |2
+                tt.hasProps('asdf', ['length'])
+                tt.hasProps(null, ['a'])
+        --^
+                tt.hasProps({}, [null])
+                tt.hasProps(null, [null])
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 3 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: {}
+      pattern:
+        - null
+      source: |2
+                tt.hasProps(null, ['a'])
+                tt.hasProps({}, [null])
+        --^
+                tt.hasProps(null, [null])
+                tt.end()
+      stack: |
+        {STACK}
+      ...
+    
+    not ok 4 - property name must be a string
+      ---
+      at:
+        line: #
+        column: #
+        file: test/test.js
+      found: null
+      pattern:
+        - null
+      source: |2
+                tt.hasProps({}, [null])
+                tt.hasProps(null, [null])
+        --^
+                tt.end()
+              })
+      stack: |
+        {STACK}
+      ...
+    
+    1..4
+    # failed 4 of 4 tests
+not ok 12 - invalid cases, all should fail # {time}
+
+1..12
+# failed 8 of 12 tests
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff hasStrict > output 1`] = `
 TAP version 13
 not ok 1 - should fail
@@ -3551,6 +4356,83 @@ ok 1 - (unnamed test) # SKIP filter: only
 1..1
 # skip: 1
 
+`
+
+exports[`test/test.js TAP snapshot file per test case > output 1`] = `
+TAP version 13
+ok 1 - must match snapshot
+# Subtest: sub 1
+    ok 1 - must match snapshot
+    1..1
+ok 2 - sub 1 # {time}
+
+ok 3 - must match snapshot
+# Subtest: sub 2
+    ok 1 - must match snapshot
+    1..1
+ok 4 - sub 2 # {time}
+
+# Subtest: sub 3 (using main)
+    ok 1 - must match snapshot
+    1..1
+ok 5 - sub 3 (using main) # {time}
+
+ok 6 - must match snapshot
+1..6
+
+`
+
+exports[`test/test.js TAP snapshot file per test case > parent.test.cjs 1`] = `
+Object {
+  "test/test.js parent > must match snapshot 1": String(
+    
+    snapshot in main before subs
+    
+  ),
+  "test/test.js parent > must match snapshot 2": String(
+    
+    snapshot in main between subs
+    
+  ),
+  "test/test.js parent > must match snapshot 3": String(
+    
+    snapshot in main after subs
+    
+  ),
+  "test/test.js parent sub 3 (using main) > must match snapshot 1": String(
+    
+    sub 3 (using main)
+    
+  ),
+}
+`
+
+exports[`test/test.js TAP snapshot file per test case > snapshot dir entries 1`] = `
+Array [
+  "parent.test.cjs",
+  "sub1.test.cjs",
+  "sub2.test.cjs",
+]
+`
+
+exports[`test/test.js TAP snapshot file per test case > sub1.test.cjs 1`] = `
+Object {
+  "test/test.js parent sub 1 > must match snapshot 1": String(
+    
+    sub1
+    
+  ),
+}
+`
+
+exports[`test/test.js TAP snapshot file per test case > sub2.test.cjs 1`] = `
+Object {
+  "test/test.js parent sub 2 > must match snapshot 1": String(
+    
+    sub2
+    
+  ),
+}
 `
 
 exports[`test/test.js TAP snapshots > saving the snapshot 1`] = `

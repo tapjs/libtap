@@ -72,6 +72,14 @@ const cases = [
     ok: 'ok ',
     message: ' {\nchild output\n}\n'
   }],
+  [true, 'message but not # todo', null, {
+    ok: 'ok ',
+    message: 'message but not \\# todo',
+  }],
+  [false, 'escape # and \\ chars', { todo: 'escape \\ and # properly' }, {
+    ok: 'ok ',
+    message: 'escape \\# and \\\\ chars # TODO escape \\\\ and \\# properly',
+  }],
 ]
 
 cases.forEach(c => t.match(new TestPoint(c[0], c[1], c[2]), c[3]))

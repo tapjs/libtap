@@ -381,6 +381,92 @@ t.test('assertions and weird stuff', t => {
       tt.end()
     },
 
+    hasProp: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasProp(c, 'a', 'should pass')
+      tt.hasProp(c, 'c', 'should fail')
+      tt.hasProp(c, 'd', 'should pass')
+      tt.hasProp(c, 'e', 'should fail')
+      tt.hasProp(c, 'f', 'should fail')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasProp(null, 'a')
+        tt.hasProp({}, null)
+        tt.hasProp(null, null)
+        tt.hasProp('asdf', 'length')
+        tt.end()
+      })
+      tt.end()
+    },
+
+    hasOwnProp: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasOwnProp(c, 'a', 'should fail')
+      tt.hasOwnProp(c, 'c', 'should fail')
+      tt.hasOwnProp(c, 'd', 'should pass')
+      tt.hasOwnProp(c, 'e', 'should fail')
+      tt.hasOwnProp(c, 'f', 'should fail')
+      tt.hasOwnProp('asdf', 'length', 'should pass')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasOwnProp(null, 'a')
+        tt.hasOwnProp({}, null)
+        tt.hasOwnProp(null, null)
+        tt.end()
+      })
+      tt.end()
+    },
+
+    hasProps: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined })
+      tt.hasProps(c, null, 'should fail (falsey)')
+      tt.hasProps(c, 'hello', 'should fail (iterable, but not object)')
+      tt.hasProps(c, {}, 'should fail (object, but not iterable)')
+
+      tt.hasProps(c, ['a'], 'should pass')
+      tt.hasProps(c, ['a', 'd'], 'should pass')
+      tt.hasProps(c, ['a', 'c'], 'should fail')
+      tt.hasProps(c, ['d'], 'should pass')
+      tt.hasProps(c, new Set(['d']), 'should pass (Set is iterable)')
+      tt.hasProps(c, new String('d'), 'should fail (even though String is iterable)')
+      tt.hasProps(c, ['d', 'e'], 'should fail')
+      tt.hasProps(c, ['d', 'f'], 'should fail')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasProps('asdf', ['length'])
+        tt.hasProps(null, ['a'])
+        tt.hasProps({}, [null])
+        tt.hasProps(null, [null])
+        tt.end()
+      })
+      tt.end()
+    },
+
+    hasOwnProps: tt => {
+      const p = { a: 'b', c: undefined, d: undefined }
+      const c = Object.assign(Object.create(p), { d: 'd', e: undefined, f: 'f' })
+      tt.hasOwnProps(c, null, 'should fail (falsey)')
+      tt.hasOwnProps(c, 'hello', 'should fail (iterable, but not object)')
+      tt.hasOwnProps(c, {}, 'should fail (object, but not iterable)')
+      tt.hasOwnProps(c, ['a'], 'should fail')
+      tt.hasOwnProps(c, ['a', 'd'], 'should fail')
+      tt.hasOwnProps(c, ['a', 'c'], 'should fail')
+      tt.hasOwnProps(c, ['d'], 'should pass')
+      tt.hasOwnProps(c, new Set(['d']), 'should pass (Set is iterable)')
+      tt.hasOwnProps(c, new String('d'), 'should fail (even though String is iterable)')
+      tt.hasOwnProps(c, ['d', 'e'], 'should fail')
+      tt.hasOwnProps(c, ['d', 'f'], 'should pass')
+      tt.hasOwnProps(c, ['d', 'f', 'g'], 'should fail')
+      tt.hasOwnProps('asdf', ['length'], 'should pass')
+      tt.test('invalid cases, all should fail', tt => {
+        tt.hasOwnProps(null, ['a'])
+        tt.hasOwnProps({}, [null])
+        tt.hasOwnProps(null, [null])
+        tt.end()
+      })
+      tt.end()
+    },
+
     match: tt => {
       tt.match({ a: 'b', c: /asdf/ }, { a: String, c: RegExp })
       tt.match({ a: 'b', c: /asdf/ }, { a: 'asdf', c: 1 })
@@ -1221,6 +1307,38 @@ t.test('snapshots', async t => {
   t.matchSnapshot(outputs[0], 'saving the snapshot')
   t.matchSnapshot(outputs[1], 'verifying the snapshot')
   t.end()
+})
+
+t.test('snapshot file per test case', async t => {
+  const dir = t.testdir({ 'tap-snapshots': {} })
+  const tt = new Test({ name: 'parent', snapshot: true })
+  tt.setEncoding('utf8')
+  tt.snapshotFile = dir + '/tap-snapshots/parent.test.cjs'
+  tt.matchSnapshot('snapshot in main before subs')
+  tt.test('sub 1', tt => {
+    tt.snapshotFile = dir + '/tap-snapshots/sub1.test.cjs'
+    tt.matchSnapshot('sub1')
+    tt.end()
+  })
+  tt.matchSnapshot('snapshot in main between subs')
+  tt.test('sub 2', tt => {
+    tt.snapshotFile = dir + '/tap-snapshots/sub2.test.cjs'
+    tt.matchSnapshot('sub2')
+    tt.end()
+  })
+  tt.test('sub 3 (using main)', tt => {
+    tt.matchSnapshot('sub 3 (using main)')
+    tt.end()
+  })
+  tt.matchSnapshot('snapshot in main after subs')
+  tt.end()
+
+  t.matchSnapshot(tt.read(), 'output')
+  const entries = fs.readdirSync(dir + '/tap-snapshots')
+  t.matchSnapshot(entries, 'snapshot dir entries')
+  for (const f of entries) {
+    t.matchSnapshot(require(`${dir}/tap-snapshots/${f}`), f)
+  }
 })
 
 t.test('endAll direct while waiting on a resolving promise', t => {

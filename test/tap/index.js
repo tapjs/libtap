@@ -42,6 +42,7 @@ module.exports = (...test) => {
     t.cleanSnapshot = str => cs(
       str.replace(process.argv[1], '{TESTFILE}')
     ).replace(/[^\n]*DEP0018[^\n]*\n/g, '')
+      .replace(/\nNode.js .*\n$/, '')
     t.plan(3)
     const c = spawn(node, [process.argv[1], 'runtest'], { env: env })
     let out = ''
