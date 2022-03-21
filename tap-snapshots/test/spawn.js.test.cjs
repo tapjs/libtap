@@ -46,7 +46,7 @@ not ok 1 - spawn something that does not exist ENOENT
 `
 
 exports[`test/spawn.js TAP skip stuff > must match snapshot 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: skipper
     1..0
     # {time}
@@ -61,7 +61,7 @@ ok 2 - node ./test/spawn.js skip-reason # SKIP for no raisins
 `
 
 exports[`test/spawn.js TAP timeout update > must match snapshot 1`] = `
-TAP version 13
+TAP version 14
 # timeout=42069
 ok 1 - this is fine
 1..1

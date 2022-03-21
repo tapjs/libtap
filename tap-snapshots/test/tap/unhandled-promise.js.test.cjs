@@ -17,7 +17,7 @@ exports[`test/tap/unhandled-promise.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/unhandled-promise.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - fine, i promise
 not ok 2 - broken
   ---

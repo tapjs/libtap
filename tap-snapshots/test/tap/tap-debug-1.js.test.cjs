@@ -15,7 +15,7 @@ Object {
 exports[`test/tap/tap-debug-1.js TAP > stderr 1`] = `
 TAP {pid} TAP: PROCESSING(TAP) 2
 TAP {pid} TAP: > STRING
-TAP {pid} TAP: LINE "TAP version 13\\n"
+TAP {pid} TAP: LINE "TAP version 14\\n"
 TAP {pid} TAP: < already processing
 TAP {pid} TAP: > STRING
 TAP {pid} TAP: LINE "# this is fine\\n"
@@ -35,7 +35,7 @@ TAP {pid} TAP: done processing [] false
 `
 
 exports[`test/tap/tap-debug-1.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 # this is fine
 1..0
 # {time}

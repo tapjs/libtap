@@ -17,7 +17,7 @@ exports[`test/tap/process-missing.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/process-missing.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 not ok 2 - this not so much
   ---

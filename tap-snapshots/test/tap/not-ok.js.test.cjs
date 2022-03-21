@@ -17,7 +17,7 @@ exports[`test/tap/not-ok.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/not-ok.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - expected
   ---
   at:

@@ -17,7 +17,7 @@ exports[`test/tap/tap-grep-invert.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/tap-grep-invert.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: yes this one
     ok 1 - Y # SKIP filter out: /^y$/i
     # Subtest: yellow

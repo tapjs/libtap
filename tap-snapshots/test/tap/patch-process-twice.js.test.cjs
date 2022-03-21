@@ -17,7 +17,7 @@ exports[`test/tap/patch-process-twice.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/patch-process-twice.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 1..0
 # {time}
 

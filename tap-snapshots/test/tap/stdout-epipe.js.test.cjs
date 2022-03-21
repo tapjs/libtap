@@ -17,7 +17,7 @@ exports[`test/tap/stdout-epipe.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/stdout-epipe.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 1..1
 # {time}

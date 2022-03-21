@@ -17,7 +17,7 @@ exports[`test/tap/set-timeout.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/set-timeout.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 # timeout=1234
 ok 1 - fine
 1..1

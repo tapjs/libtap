@@ -17,7 +17,7 @@ exports[`test/tap/redirect-output.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/redirect-output.js TAP > stdout 1`] = `
-redirected: TAP version 13
+redirected: TAP version 14
 redirected: ok 1 - ok
 redirected: 1..1
 redirected: # {time}

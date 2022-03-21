@@ -17,7 +17,7 @@ exports[`test/tap/bail.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/bail.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 Bail out! cannot proceed
 
 `

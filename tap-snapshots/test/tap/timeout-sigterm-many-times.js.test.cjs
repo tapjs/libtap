@@ -17,7 +17,7 @@ exports[`test/tap/timeout-sigterm-many-times.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/timeout-sigterm-many-times.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - fine
 not ok 2 - timeout!
   ---

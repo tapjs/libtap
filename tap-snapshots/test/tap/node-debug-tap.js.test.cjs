@@ -16,7 +16,7 @@ exports[`test/tap/node-debug-tap.js TAP > stderr 1`] = `
 TAP {pid} TAP: END implicit=true
 TAP {pid} TAP: PROCESSING(TAP) 3
 TAP {pid} TAP: > STRING
-TAP {pid} TAP: LINE "TAP version 13\\n"
+TAP {pid} TAP: LINE "TAP version 14\\n"
 TAP {pid} TAP: < already processing
 TAP {pid} TAP: > STRING
 TAP {pid} TAP: LINE "1..0\\n"
@@ -30,7 +30,7 @@ TAP {pid} TAP: done processing [] false
 `
 
 exports[`test/tap/node-debug-tap.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 1..0
 # {time}
 

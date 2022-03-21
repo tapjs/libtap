@@ -17,7 +17,7 @@ exports[`test/tap/tap-only.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/tap-only.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: only this one
     1..0
 ok 1 - only this one # {time}

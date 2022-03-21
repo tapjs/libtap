@@ -17,7 +17,7 @@ exports[`test/tap/uncaught-exception.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/uncaught-exception.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 ok 2 - i am sure things are ok
 not ok 3 - poop

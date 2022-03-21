@@ -18,7 +18,7 @@ exports[`test/tap/teardown-throw-nonerror.js TAP > stderr 1`] = `
 `
 
 exports[`test/tap/teardown-throw-nonerror.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - x
 1..1
 # {time}

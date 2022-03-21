@@ -21,7 +21,7 @@ Error: test count exceeds plan
 `
 
 exports[`test/tap/too-much.js TAP > stdout 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - a little
 # {time}

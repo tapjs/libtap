@@ -6,7 +6,7 @@
  */
 'use strict'
 exports[`test/test.js TAP addAssert > using the custom isUrl assertion 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - expect a valid http/https url
   ---
   at:
@@ -53,7 +53,7 @@ ok 3 - expect a valid http/https url # SKIP
 `
 
 exports[`test/test.js TAP assertions and weird stuff autoEnd > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: this should automatically end
     ok 1 - this is fine
     ok 2 - also fine
@@ -110,14 +110,14 @@ not ok 6 - cannot create subtest after parent test end # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff autoend(false) > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 1..1
 
 `
 
 exports[`test/test.js TAP assertions and weird stuff bailout in first buffered sub > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: one
     # Subtest: 1.5
         Bail out! bail me out
@@ -126,7 +126,7 @@ Bail out! bail me out
 `
 
 exports[`test/test.js TAP assertions and weird stuff bailout in first sub > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: one
     Bail out! bail me out
 Bail out! bail me out
@@ -134,7 +134,7 @@ Bail out! bail me out
 `
 
 exports[`test/test.js TAP assertions and weird stuff bailout in nested sub > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: one
     # Subtest: 1.5
         Bail out! bail me out
@@ -143,7 +143,7 @@ Bail out! bail me out
 `
 
 exports[`test/test.js TAP assertions and weird stuff bailout with buffered subs > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: 1
     1..0
 ok 1 - 1 # {time}
@@ -153,7 +153,7 @@ Bail out! whoops
 `
 
 exports[`test/test.js TAP assertions and weird stuff bailout with indented subs > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: 1
     1..0
 ok 1 - 1 # {time}
@@ -164,7 +164,7 @@ Bail out! whoops
 `
 
 exports[`test/test.js TAP assertions and weird stuff before after assertion fails > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     ok 1 - this is going to be trouble
     not ok 2 - t.before() called after starting tests
@@ -185,7 +185,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff before after async test fails > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     # Subtest: sync child
         1..0
@@ -209,7 +209,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff before after sync test fails > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     # Subtest: sync child
         1..0
@@ -233,7 +233,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff before async > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - before was called
 ok 2 - before not done yet
 # Subtest: child
@@ -246,7 +246,7 @@ ok 3 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff before called more than once fails > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - called t.before() more than once
       ---
@@ -266,7 +266,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff before reject > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - poo
       ---
@@ -295,14 +295,14 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff before sync > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - before was called
 1..1
 
 `
 
 exports[`test/test.js TAP assertions and weird stuff before throw > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - poo
       ---
@@ -332,7 +332,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff beforeEach afterEach > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     # Subtest: grandkid
         1..0
@@ -354,7 +354,7 @@ parent ae child
 `
 
 exports[`test/test.js TAP assertions and weird stuff child breaks a promise > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - poop
       ---
@@ -384,7 +384,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff child breaks a promise nonerror > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - (unnamed test)
       ---
@@ -415,7 +415,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff child teardown throw > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     1..0
 ok 1 - child # {time}
@@ -444,7 +444,7 @@ not ok 2 - fail
 `
 
 exports[`test/test.js TAP assertions and weird stuff child teardown throw nonerror > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     1..0
 ok 1 - child # {time}
@@ -462,14 +462,14 @@ not ok 2 - (unnamed test)
 `
 
 exports[`test/test.js TAP assertions and weird stuff comment after end > output 1`] = `
-TAP version 13
+TAP version 14
 1..0
 # this is fine
 
 `
 
 exports[`test/test.js TAP assertions and weird stuff doesNotThrow > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 ok 2 - expected to not throw # TODO
 ok 3 - reverse args
@@ -498,7 +498,7 @@ not ok 5 - fail
 `
 
 exports[`test/test.js TAP assertions and weird stuff end multiple times > output 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - yes
 STDERR:
@@ -509,7 +509,7 @@ Error: test end() method called more than once
 `
 
 exports[`test/test.js TAP assertions and weird stuff endAll with bailout > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - not fine
       ---
@@ -533,7 +533,7 @@ Bail out! not fine
 `
 
 exports[`test/test.js TAP assertions and weird stuff endAll with stdin > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: /dev/stdin
     ok - but not ended
     
@@ -549,7 +549,7 @@ not ok 1 - /dev/stdin # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff endAll with test children > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: this is the test that never ends
     # Subtest: it goes on and on my friend
         ok 1 - this is ok
@@ -590,7 +590,7 @@ not ok 1 - this is the test that never ends # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff endAll with unresolved t.resolveMatch > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: this is the test that never ends
     # Subtest: it goes on and on my friend
         ok 1 - this is ok
@@ -629,7 +629,7 @@ not ok 1 - this is the test that never ends # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff equal > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - should be equal
   ---
   at:
@@ -709,7 +709,7 @@ not ok 5 - should be equal
 `
 
 exports[`test/test.js TAP assertions and weird stuff error > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is not an error
 not ok 2 - this error is poop
   ---
@@ -824,7 +824,7 @@ ok 7 - should not error
 `
 
 exports[`test/test.js TAP assertions and weird stuff fullname without main > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     ok 1 - child
     1..1
@@ -836,7 +836,7 @@ ok 2
 `
 
 exports[`test/test.js TAP assertions and weird stuff grep > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - do not run this # SKIP filter: /x$/
     # Subtest: but do run this x
@@ -871,7 +871,7 @@ ok 1 - parent # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff grepInvert > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - do not run this x # SKIP filter out: /x$/
     # Subtest: but do run this
@@ -906,7 +906,7 @@ ok 1 - parent # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff has > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - should pass
 not ok 2 - should fail
   ---
@@ -966,7 +966,7 @@ ok 5 - should contain all provided fields # TODO
 `
 
 exports[`test/test.js TAP assertions and weird stuff hasOwnProp > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - should fail
   ---
   at:
@@ -1114,7 +1114,7 @@ not ok 7 - invalid cases, all should fail # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff hasOwnProps > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - property list must be iterable object
   ---
   at:
@@ -1387,7 +1387,7 @@ not ok 14 - invalid cases, all should fail # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff hasProp > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - should pass
 not ok 2 - should fail
   ---
@@ -1533,7 +1533,7 @@ not ok 6 - invalid cases, all should fail # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff hasProps > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - property list must be iterable object
   ---
   at:
@@ -1771,7 +1771,7 @@ not ok 12 - invalid cases, all should fail # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff hasStrict > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - should fail
   ---
   at:
@@ -1828,7 +1828,7 @@ not ok 3 - should contain all provided fields strictly # TODO
 `
 
 exports[`test/test.js TAP assertions and weird stuff implicit bailout with parallel subs > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: zro
     1..0
 ok 1 - zro # {time}
@@ -1860,7 +1860,7 @@ Bail out! two fail 0
 `
 
 exports[`test/test.js TAP assertions and weird stuff implicit bailout without ending parent > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: zro
     1..0
 ok 1 - zro # {time}
@@ -1896,7 +1896,7 @@ Bail out! not fine
 `
 
 exports[`test/test.js TAP assertions and weird stuff match > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - should match pattern provided
 not ok 2 - should match pattern provided
   ---
@@ -2044,7 +2044,7 @@ not ok 9 - fails, prints diff in js mode
 `
 
 exports[`test/test.js TAP assertions and weird stuff not > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - should not be equal
 ok 2 - should not be equal # SKIP
 not ok 3 - one is not one
@@ -2074,7 +2074,7 @@ ok 4 - should not be equal
 `
 
 exports[`test/test.js TAP assertions and weird stuff notHas > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - should fail
   ---
   at:
@@ -2148,7 +2148,7 @@ not ok 5 - should not contain all provided fields # TODO
 `
 
 exports[`test/test.js TAP assertions and weird stuff notHasStrict > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - should pass
 not ok 2 - should fail
   ---
@@ -2180,7 +2180,7 @@ ok 3 - should not contain all provided fields strictly # TODO
 `
 
 exports[`test/test.js TAP assertions and weird stuff plan excess > output 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - fine
 STDERR:
@@ -2191,7 +2191,7 @@ Error: test count exceeds plan
 `
 
 exports[`test/test.js TAP assertions and weird stuff plan excess, ignored when failing > output 1`] = `
-TAP version 13
+TAP version 14
 1..1
 not ok 1 - expected fail
 # failed 1 test
@@ -2199,7 +2199,7 @@ not ok 1 - expected fail
 `
 
 exports[`test/test.js TAP assertions and weird stuff plan, child test, explicit end > output 1`] = `
-TAP version 13
+TAP version 14
 1..1
 # Subtest
     1..0
@@ -2209,14 +2209,14 @@ ok 1 # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff printResult > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 1..1
 
 `
 
 exports[`test/test.js TAP assertions and weird stuff printResult after plan end > output 1`] = `
-TAP version 13
+TAP version 14
 1..0
 STDERR:
 Error: test after end() was called
@@ -2226,7 +2226,7 @@ Error: test after end() was called
 `
 
 exports[`test/test.js TAP assertions and weird stuff rejects > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - promise
 ok 2 - fn returns promise
 ok 3 - expect rejected Promise
@@ -2298,7 +2298,7 @@ ok 20 - empty rejection
 `
 
 exports[`test/test.js TAP assertions and weird stuff resolveMatch > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - expect resolving Promise
 not ok 2 - expect resolving Promise # TODO
   ---
@@ -2360,7 +2360,7 @@ not ok 6 - fail: rejected promise
 `
 
 exports[`test/test.js TAP assertions and weird stuff resolves > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - expect resolving Promise
 ok 2 - expect resolving Promise # TODO
 ok 3 - passing promise
@@ -2386,7 +2386,7 @@ not ok 5 - fail: no promise
 `
 
 exports[`test/test.js TAP assertions and weird stuff same > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - should be equivalent
 ok 2 - should be equivalent
 ok 3 - object exactness
@@ -2476,7 +2476,7 @@ not ok 15 - this one fails
 `
 
 exports[`test/test.js TAP assertions and weird stuff silent subs > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     1..0
 ok 1 - child # {time}
@@ -2490,7 +2490,7 @@ ok 2 - child 2 # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff stdinOnly > output 1`] = `
-TAP version 13
+TAP version 14
 1..8
 # Subtest: the stdinOnly test
     
@@ -2518,7 +2518,7 @@ ok 8 - should be equivalent
 `
 
 exports[`test/test.js TAP assertions and weird stuff t.emits > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - this one will fail
   ---
   at:
@@ -2581,7 +2581,7 @@ not ok 2 - expect never emitted event to be emitted
 `
 
 exports[`test/test.js TAP assertions and weird stuff teardown promise > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - this is fine
     1..1
@@ -2593,7 +2593,7 @@ ok 1 - parent # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff teardown promise fail > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - this is fine
     1..1
@@ -2623,7 +2623,7 @@ not ok 2 - did not tear down proper
 `
 
 exports[`test/test.js TAP assertions and weird stuff teardown promise fail nonerror > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - this is fine
     1..1
@@ -2644,7 +2644,7 @@ not ok 2 - (unnamed test)
 `
 
 exports[`test/test.js TAP assertions and weird stuff test after end fails > output 1`] = `
-TAP version 13
+TAP version 14
 1..0
 STDERR:
 Error: test after end() was called
@@ -2654,7 +2654,7 @@ Error: test after end() was called
 `
 
 exports[`test/test.js TAP assertions and weird stuff throw in child beforeEach > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     # Subtest: grandkid
         not ok 1 - poop
@@ -2692,7 +2692,7 @@ ok 2 - next kid # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff throw in root beforeEach > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - poop
       ---
@@ -2743,7 +2743,7 @@ not ok 2 - next kid # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff thrower after end > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     1..1
     ok 1 - this is fine
@@ -2772,7 +2772,7 @@ not ok 2 - catch it in the parent
 `
 
 exports[`test/test.js TAP assertions and weird stuff throws > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - expected to throw
 ok 2 - returns the error that was thrown
 ok 3 - expected to throw
@@ -2812,7 +2812,7 @@ ok 16 - todo # TODO
 `
 
 exports[`test/test.js TAP assertions and weird stuff timeout at the last tick > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: work it harder buf=false
     1..1
     ok 1 - this is fine
@@ -2847,7 +2847,7 @@ not ok 4 - timeout!
 `
 
 exports[`test/test.js TAP assertions and weird stuff timeout expiration > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: get lost buf=false
     not ok 1 - timeout!
       ---
@@ -2888,7 +2888,7 @@ not ok 2 - get lost buf=true # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff timeout with subs > output 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: get lost buf=false
     # Subtest: carry on
         not ok 1 - timeout!
@@ -2937,7 +2937,7 @@ not ok 2 - get lost buf=true # {time}
 `
 
 exports[`test/test.js TAP assertions and weird stuff type > output 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - this fails
   ---
   at:
@@ -3020,7 +3020,7 @@ ok 12 - type is EventEmitter
 `
 
 exports[`test/test.js TAP assertions and weird stuff using the assertAt field > output 1`] = `
-TAP version 13
+TAP version 14
 1..1
 not ok 1 - expect fail
   ---
@@ -3041,7 +3041,7 @@ not ok 1 - expect fail
 `
 
 exports[`test/test.js TAP assertions and weird stuff using the assertStack field > output 1`] = `
-TAP version 13
+TAP version 14
 1..1
 not ok 1 - expect fail
   ---
@@ -3064,7 +3064,7 @@ not ok 1 - expect fail
 `
 
 exports[`test/test.js TAP does not bork when process goes missing > must match snapshot 1`] = `
-TAP version 13
+TAP version 14
 1..1
 # Subtest: child
     1..1
@@ -3075,7 +3075,7 @@ ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP endAll direct while waiting on Promise rejection > result 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - expect rejected Promise
   ---
   at:
@@ -3102,7 +3102,7 @@ not ok 1 - expect rejected Promise
 `
 
 exports[`test/test.js TAP endAll direct while waiting on a resolving promise > result 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - expect resolving Promise
   ---
   at:
@@ -3129,7 +3129,7 @@ not ok 1 - expect resolving Promise
 `
 
 exports[`test/test.js TAP endAll with sub while waiting on a resolving promise > result 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     not ok 1 - expect resolving Promise
       ---
@@ -3161,7 +3161,7 @@ not ok 1 # {time}
 `
 
 exports[`test/test.js TAP ok if process missing from the start > must match snapshot 1`] = `
-TAP version 13
+TAP version 14
 1..1
 # Subtest: child
     1..1
@@ -3193,7 +3193,7 @@ FinalResults {
 `
 
 exports[`test/test.js TAP short output checks bailout after end bailout > bailout after end 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     ok 1 - this is fine
     1..1
@@ -3202,7 +3202,7 @@ BAILOUT: "not fine"
 `
 
 exports[`test/test.js TAP short output checks bailout after end no options > bailout after end 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     ok 1 - this is fine
     1..1
@@ -3211,7 +3211,7 @@ BAILOUT: "not fine"
 `
 
 exports[`test/test.js TAP short output checks bailout after end runOnly > bailout after end 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - (unnamed test) # SKIP filter: only
 1..1
 # skip: 1
@@ -3219,7 +3219,7 @@ ok 1 - (unnamed test) # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks child end event throw nonerror bailout > child end event throw nonerror 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     1..1
     ok 1 - should be equal
@@ -3248,7 +3248,7 @@ BAILOUT: "(unnamed test)"
 `
 
 exports[`test/test.js TAP short output checks child end event throw nonerror no options > child end event throw nonerror 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     1..1
     ok 1 - should be equal
@@ -3278,7 +3278,7 @@ not ok 2 - (unnamed test)
 `
 
 exports[`test/test.js TAP short output checks child end event throw nonerror runOnly > child end event throw nonerror 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - (unnamed test) # SKIP filter: only
 1..1
 # skip: 1
@@ -3286,7 +3286,7 @@ ok 1 - (unnamed test) # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks child end event thrower bailout > child end event thrower 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     1..1
     ok 1 - should be equal
@@ -3314,7 +3314,7 @@ BAILOUT: "beep"
 `
 
 exports[`test/test.js TAP short output checks child end event thrower no options > child end event thrower 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     1..1
     ok 1 - should be equal
@@ -3343,7 +3343,7 @@ not ok 2 - beep
 `
 
 exports[`test/test.js TAP short output checks child end event thrower runOnly > child end event thrower 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - (unnamed test) # SKIP filter: only
 1..1
 # skip: 1
@@ -3351,7 +3351,7 @@ ok 1 - (unnamed test) # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks child thrower bailout > child thrower 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child test
     not ok 1 - ok
       ---
@@ -3375,7 +3375,7 @@ BAILOUT: "ok"
 `
 
 exports[`test/test.js TAP short output checks child thrower no options > child thrower 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child test
     not ok 1 - ok
       ---
@@ -3404,7 +3404,7 @@ not ok 1 - child test # {time}
 `
 
 exports[`test/test.js TAP short output checks child thrower nonerror bailout > child thrower nonerror 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child test
     not ok 1 - (unnamed test)
       ---
@@ -3428,7 +3428,7 @@ BAILOUT: "(unnamed test)"
 `
 
 exports[`test/test.js TAP short output checks child thrower nonerror no options > child thrower nonerror 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child test
     not ok 1 - (unnamed test)
       ---
@@ -3457,7 +3457,7 @@ not ok 1 - child test # {time}
 `
 
 exports[`test/test.js TAP short output checks child thrower nonerror runOnly > child thrower nonerror 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - child test # SKIP filter: only
 1..1
 # skip: 1
@@ -3465,7 +3465,7 @@ ok 1 - child test # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks child thrower runOnly > child thrower 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - child test # SKIP filter: only
 1..1
 # skip: 1
@@ -3473,28 +3473,28 @@ ok 1 - child test # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks comment bailout > comment 1`] = `
-TAP version 13
+TAP version 14
 # this is fine
 1..0
 
 `
 
 exports[`test/test.js TAP short output checks comment no options > comment 1`] = `
-TAP version 13
+TAP version 14
 # this is fine
 1..0
 
 `
 
 exports[`test/test.js TAP short output checks comment runOnly > comment 1`] = `
-TAP version 13
+TAP version 14
 # this is fine
 1..0
 
 `
 
 exports[`test/test.js TAP short output checks diags bailout > diags 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - has diags
   ---
   foo: 1
@@ -3506,7 +3506,7 @@ BAILOUT: "fails without diag"
 `
 
 exports[`test/test.js TAP short output checks diags no options > diags 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - has diags
   ---
   foo: 1
@@ -3531,7 +3531,7 @@ not ok 6 - fails without diag
 `
 
 exports[`test/test.js TAP short output checks diags runOnly > diags 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - has diags
   ---
   foo: 1
@@ -3556,28 +3556,28 @@ not ok 6 - fails without diag
 `
 
 exports[`test/test.js TAP short output checks expect fail bailout > expect fail 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - this is fine
 
 `
 
 exports[`test/test.js TAP short output checks expect fail no options > expect fail 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - this is fine
 
 `
 
 exports[`test/test.js TAP short output checks expect fail runOnly > expect fail 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - this is fine
 
 `
 
 exports[`test/test.js TAP short output checks fail then end bailout > fail then end 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - this is not ok
       ---
@@ -3600,7 +3600,7 @@ BAILOUT: "this is not ok"
 `
 
 exports[`test/test.js TAP short output checks fail then end no options > fail then end 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child
     not ok 1 - this is not ok
       ---
@@ -3628,7 +3628,7 @@ not ok 1 - child # {time}
 `
 
 exports[`test/test.js TAP short output checks fail then end runOnly > fail then end 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - child # SKIP filter: only
 1..1
 # skip: 1
@@ -3636,7 +3636,7 @@ ok 1 - child # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks gentle thrower bailout > gentle thrower 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - ok
   ---
   at:
@@ -3658,7 +3658,7 @@ BAILOUT: "ok"
 `
 
 exports[`test/test.js TAP short output checks gentle thrower no options > gentle thrower 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - ok
   ---
   at:
@@ -3681,7 +3681,7 @@ not ok 1 - ok
 `
 
 exports[`test/test.js TAP short output checks gentle thrower nonerror bailout > gentle thrower nonerror 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - (unnamed test)
   ---
   error: ok
@@ -3694,7 +3694,7 @@ BAILOUT: "(unnamed test)"
 `
 
 exports[`test/test.js TAP short output checks gentle thrower nonerror no options > gentle thrower nonerror 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - (unnamed test)
   ---
   error: ok
@@ -3708,7 +3708,7 @@ not ok 1 - (unnamed test)
 `
 
 exports[`test/test.js TAP short output checks gentle thrower nonerror runOnly > gentle thrower nonerror 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - (unnamed test)
   ---
   error: ok
@@ -3723,7 +3723,7 @@ not ok 1 - (unnamed test)
 `
 
 exports[`test/test.js TAP short output checks gentle thrower runOnly > gentle thrower 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - ok
   ---
   at:
@@ -3747,63 +3747,63 @@ not ok 1 - ok
 `
 
 exports[`test/test.js TAP short output checks multi-plan throws bailout > multi-plan throws 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - expected to throw
 
 `
 
 exports[`test/test.js TAP short output checks multi-plan throws no options > multi-plan throws 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - expected to throw
 
 `
 
 exports[`test/test.js TAP short output checks multi-plan throws runOnly > multi-plan throws 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - expected to throw
 
 `
 
 exports[`test/test.js TAP short output checks negative plan throws bailout > negative plan throws 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - expected to throw
 1..1
 
 `
 
 exports[`test/test.js TAP short output checks negative plan throws no options > negative plan throws 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - expected to throw
 1..1
 
 `
 
 exports[`test/test.js TAP short output checks negative plan throws runOnly > negative plan throws 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - expected to throw
 1..1
 
 `
 
 exports[`test/test.js TAP short output checks no plan bailout > no plan 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 1..1
 
 `
 
 exports[`test/test.js TAP short output checks no plan fail bailout > no plan fail 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - this is fine
 Bail out! this is fine
 BAILOUT: "this is fine"
 `
 
 exports[`test/test.js TAP short output checks no plan fail no options > no plan fail 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - this is fine
 not ok 2 - (unnamed test) # TODO
   ---
@@ -3842,7 +3842,7 @@ not ok 3 - this is fine
 `
 
 exports[`test/test.js TAP short output checks no plan fail runOnly > no plan fail 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - this is fine
 not ok 2 - (unnamed test) # TODO
   ---
@@ -3881,21 +3881,21 @@ not ok 3 - this is fine
 `
 
 exports[`test/test.js TAP short output checks no plan no options > no plan 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 1..1
 
 `
 
 exports[`test/test.js TAP short output checks no plan runOnly > no plan 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - this is fine
 1..1
 
 `
 
 exports[`test/test.js TAP short output checks only bailout > only 1`] = `
-TAP version 13
+TAP version 14
 # "run this with a comment" has \`only\` set but all tests run
 # Subtest: run this with a comment
     1..0
@@ -3915,7 +3915,7 @@ ok 3 - run this with a comment # {time}
 `
 
 exports[`test/test.js TAP short output checks only no options > only 1`] = `
-TAP version 13
+TAP version 14
 # "run this with a comment" has \`only\` set but all tests run
 # Subtest: run this with a comment
     1..0
@@ -3935,7 +3935,7 @@ ok 3 - run this with a comment # {time}
 `
 
 exports[`test/test.js TAP short output checks only runOnly > only 1`] = `
-TAP version 13
+TAP version 14
 # "run this with a comment" has \`only\` set but all tests run
 # Subtest: run this with a comment
     1..0
@@ -3955,7 +3955,7 @@ ok 3 - run this with a comment # {time}
 `
 
 exports[`test/test.js TAP short output checks parallel sub bailout > parallel sub 1`] = `
-TAP version 13
+TAP version 14
 1..2
 # Subtest: slow child
     1..0
@@ -3970,7 +3970,7 @@ ok 2 - fast child # {time}
 `
 
 exports[`test/test.js TAP short output checks parallel sub no options > parallel sub 1`] = `
-TAP version 13
+TAP version 14
 1..2
 # Subtest: slow child
     1..0
@@ -3985,7 +3985,7 @@ ok 2 - fast child # {time}
 `
 
 exports[`test/test.js TAP short output checks parallel sub runOnly > parallel sub 1`] = `
-TAP version 13
+TAP version 14
 1..2
 ok 1 - slow child # SKIP filter: only
 ok 2 - fast child # SKIP filter: only
@@ -3994,14 +3994,14 @@ ok 2 - fast child # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks plan bailout > plan 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - this is fine
 
 `
 
 exports[`test/test.js TAP short output checks plan fail bailout > plan fail 1`] = `
-TAP version 13
+TAP version 14
 1..1 # expect some failure here
 not ok 1 - this is fine
 Bail out! this is fine
@@ -4009,7 +4009,7 @@ BAILOUT: "this is fine"
 `
 
 exports[`test/test.js TAP short output checks plan fail no options > plan fail 1`] = `
-TAP version 13
+TAP version 14
 1..1 # expect some failure here
 not ok 1 - this is fine
 # failed 1 test
@@ -4017,7 +4017,7 @@ not ok 1 - this is fine
 `
 
 exports[`test/test.js TAP short output checks plan fail runOnly > plan fail 1`] = `
-TAP version 13
+TAP version 14
 1..1 # expect some failure here
 not ok 1 - this is fine
 # failed 1 test
@@ -4025,39 +4025,39 @@ not ok 1 - this is fine
 `
 
 exports[`test/test.js TAP short output checks plan no options > plan 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - this is fine
 
 `
 
 exports[`test/test.js TAP short output checks plan runOnly > plan 1`] = `
-TAP version 13
+TAP version 14
 1..1
 ok 1 - this is fine
 
 `
 
 exports[`test/test.js TAP short output checks planned skip bailout > planned skip 1`] = `
-TAP version 13
+TAP version 14
 1..0 # skip this one
 
 `
 
 exports[`test/test.js TAP short output checks planned skip no options > planned skip 1`] = `
-TAP version 13
+TAP version 14
 1..0 # skip this one
 
 `
 
 exports[`test/test.js TAP short output checks planned skip runOnly > planned skip 1`] = `
-TAP version 13
+TAP version 14
 1..0 # skip this one
 
 `
 
 exports[`test/test.js TAP short output checks pragma bailout > pragma 1`] = `
-TAP version 13
+TAP version 14
 pragma +strict
 pragma -strict
 1..0
@@ -4065,7 +4065,7 @@ pragma -strict
 `
 
 exports[`test/test.js TAP short output checks pragma no options > pragma 1`] = `
-TAP version 13
+TAP version 14
 pragma +strict
 pragma -strict
 1..0
@@ -4073,7 +4073,7 @@ pragma -strict
 `
 
 exports[`test/test.js TAP short output checks pragma runOnly > pragma 1`] = `
-TAP version 13
+TAP version 14
 pragma +strict
 pragma -strict
 1..0
@@ -4081,7 +4081,7 @@ pragma -strict
 `
 
 exports[`test/test.js TAP short output checks reasoned bailout bailout > reasoned bailout 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     ok 1 - this is fine
     Bail out! not fine
@@ -4089,7 +4089,7 @@ BAILOUT: "not fine"
 `
 
 exports[`test/test.js TAP short output checks reasoned bailout no options > reasoned bailout 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     ok 1 - this is fine
     Bail out! not fine
@@ -4097,7 +4097,7 @@ BAILOUT: "not fine"
 `
 
 exports[`test/test.js TAP short output checks reasoned bailout runOnly > reasoned bailout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - (unnamed test) # SKIP filter: only
 1..1
 # skip: 1
@@ -4105,7 +4105,7 @@ ok 1 - (unnamed test) # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks simulated uncaughtException throwing bailout > simulated uncaughtException throwing 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - expect uncaughtException
     # Subtest: wrong error
@@ -4131,7 +4131,7 @@ BAILOUT: "expect uncaughtException"
 `
 
 exports[`test/test.js TAP short output checks simulated uncaughtException throwing no options > simulated uncaughtException throwing 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: parent
     ok 1 - expect uncaughtException
     # Subtest: wrong error
@@ -4183,7 +4183,7 @@ not ok 1 - parent # {time}
 `
 
 exports[`test/test.js TAP short output checks simulated uncaughtException throwing runOnly > simulated uncaughtException throwing 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - parent # SKIP filter: only
 1..1
 # skip: 1
@@ -4191,7 +4191,7 @@ ok 1 - parent # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks sub bailout > sub 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: named child
     ok 1 - this is fine
     ok 2 - (unnamed test)
@@ -4215,7 +4215,7 @@ ok 3 - promisey # {time}
 `
 
 exports[`test/test.js TAP short output checks sub no options > sub 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: named child
     ok 1 - this is fine
     ok 2 - (unnamed test)
@@ -4239,7 +4239,7 @@ ok 3 - promisey # {time}
 `
 
 exports[`test/test.js TAP short output checks sub runOnly > sub 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - named child # SKIP filter: only
 ok 2 - named_function # SKIP filter: only
 ok 3 - promisey # SKIP filter: only
@@ -4249,7 +4249,7 @@ ok 3 - promisey # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks todo bailout > todo 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - i will do this later # TODO
   ---
   at:
@@ -4289,7 +4289,7 @@ ok 6 - i did not do this later # SKIP
 `
 
 exports[`test/test.js TAP short output checks todo no options > todo 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - i will do this later # TODO
   ---
   at:
@@ -4329,7 +4329,7 @@ ok 6 - i did not do this later # SKIP
 `
 
 exports[`test/test.js TAP short output checks todo runOnly > todo 1`] = `
-TAP version 13
+TAP version 14
 not ok 1 - i will do this later # TODO
   ---
   at:
@@ -4369,7 +4369,7 @@ ok 6 - i did not do this later # SKIP filter: only
 `
 
 exports[`test/test.js TAP short output checks unreasonable bailout bailout > unreasonable bailout 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     ok 1 - this is fine
     Bail out!
@@ -4377,7 +4377,7 @@ TAP version 13
 `
 
 exports[`test/test.js TAP short output checks unreasonable bailout no options > unreasonable bailout 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     ok 1 - this is fine
     Bail out!
@@ -4385,7 +4385,7 @@ TAP version 13
 `
 
 exports[`test/test.js TAP short output checks unreasonable bailout runOnly > unreasonable bailout 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - (unnamed test) # SKIP filter: only
 1..1
 # skip: 1
@@ -4393,7 +4393,7 @@ ok 1 - (unnamed test) # SKIP filter: only
 `
 
 exports[`test/test.js TAP snapshot file per test case > output 1`] = `
-TAP version 13
+TAP version 14
 ok 1 - must match snapshot
 # Subtest: sub 1
     ok 1 - must match snapshot
@@ -4470,7 +4470,7 @@ Object {
 `
 
 exports[`test/test.js TAP snapshots > saving the snapshot 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child test
     ok 1 - an object
     ok 2 - a jsonic object
@@ -4603,7 +4603,7 @@ some string \\\\ \\\` \\\${process.env.FOO}
 `
 
 exports[`test/test.js TAP snapshots > verifying the snapshot 1`] = `
-TAP version 13
+TAP version 14
 # Subtest: child test
     ok 1 - an object
     ok 2 - a jsonic object
@@ -4647,7 +4647,7 @@ exports[`test/test.js TAP test dir name does not throw when no main module is pr
 `
 
 exports[`test/test.js TAP throw while waiting on a resolving promise > result 1`] = `
-TAP version 13
+TAP version 14
 # Subtest
     not ok 1 - expect resolving Promise
       ---

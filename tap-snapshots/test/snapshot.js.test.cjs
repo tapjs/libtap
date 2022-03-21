@@ -6,7 +6,7 @@
  */
 'use strict'
 exports[`test/snapshot.js TAP ok if process missing from the start > must match snapshot 1`] = `
-TAP version 13
+TAP version 14
 1..1
 # Subtest: child
     1..1
