@@ -396,3 +396,44 @@ t.test('do not unnecessarily log uncaughts while bailing out', t => {
   t.equal(b.read().toString('utf8'), 'TAP version 13\nnot ok\nBail out!\n')
   t.end()
 })
+
+t.test("uses APIs from timers module", t => {
+  const { setTimeout, clearTimeout } = require('timers')
+  const mockTimers = {
+    timeoutsSet: [],
+    timeoutsCleared: [],
+    setTimeout: (fn, time) => {
+      const handle = setTimeout(fn, time)
+      mockTimers.timeoutsSet.push([handle, fn, time])
+      return handle
+    },
+    clearTimeout: (handle) => {
+      const ret = clearTimeout(handle)
+      mockTimers.timeoutsCleared.push(handle)
+      return ret
+    }
+  }
+
+  const Base = t.mock('../lib/base.js', { timers: mockTimers })
+  const b = new Base({name: 'timer mock test'})
+  let handle;
+  t.equal(mockTimers.timeoutsSet.length, 0)
+  t.equal(mockTimers.timeoutsCleared.length, 0)
+  b.setTimeout(1000)
+  handle = b.timer
+  t.equal(mockTimers.timeoutsSet.length, 1)
+  t.equal(mockTimers.timeoutsSet[0][0], handle)
+  t.equal(mockTimers.timeoutsSet[0][2], 1000)
+  b.setTimeout()
+  t.equal(mockTimers.timeoutsCleared.length, 1)
+  t.equal(mockTimers.timeoutsCleared[0], handle)
+  b.setTimeout(5000)
+  handle = b.timer
+  t.equal(mockTimers.timeoutsSet.length, 2)
+  t.equal(mockTimers.timeoutsSet[1][0], handle)
+  t.equal(mockTimers.timeoutsSet[1][2], 5000)
+  b.setTimeout()
+  t.equal(mockTimers.timeoutsCleared.length, 2)
+  t.equal(mockTimers.timeoutsCleared[1], handle)
+  t.end()
+})
