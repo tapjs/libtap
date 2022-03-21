@@ -63,14 +63,14 @@ const cases = [
     fluffer: 'nutter'
   }, {
     ok: 'ok ',
-    message: '\n  ---\n  fluffer: nutter\n  ...\n{\nchild output\n}\n'
+    message: '\n  ---\n  fluffer: nutter\n  ...\n',
   }],
   [true, '', {
     tapChildBuffer: 'child output',
     fluffer: 'nutter'
   }, {
     ok: 'ok ',
-    message: ' {\nchild output\n}\n'
+    message: '\n',
   }],
   [true, 'message but not # todo', null, {
     ok: 'ok ',

@@ -119,9 +119,8 @@ ok 1 - this is fine
 exports[`test/test.js TAP assertions and weird stuff bailout in first buffered sub > output 1`] = `
 TAP version 13
 # Subtest: one
-    not ok 1 - 1.5 # {time} {
+    # Subtest: 1.5
         Bail out! bail me out
-    }
 Bail out! bail me out
 
 `
@@ -145,9 +144,9 @@ Bail out! bail me out
 
 exports[`test/test.js TAP assertions and weird stuff bailout with buffered subs > output 1`] = `
 TAP version 13
-ok 1 - 1 # {time} {
+# Subtest: 1
     1..0
-}
+ok 1 - 1 # {time}
 
 Bail out! whoops
 
@@ -1830,15 +1829,15 @@ not ok 3 - should contain all provided fields strictly # TODO
 
 exports[`test/test.js TAP assertions and weird stuff implicit bailout with parallel subs > output 1`] = `
 TAP version 13
-ok 1 - zro # {time} {
+# Subtest: zro
     1..0
-}
+ok 1 - zro # {time}
 
-ok 2 - one # {time} {
+# Subtest: one
     1..0
-}
+ok 2 - one # {time}
 
-not ok 3 - two # {time} {
+# Subtest: two
     not ok 1 - two fail 0
       ---
       at:
@@ -1856,26 +1855,25 @@ not ok 3 - two # {time} {
       ...
     
     Bail out! two fail 0
-}
 Bail out! two fail 0
 
 `
 
 exports[`test/test.js TAP assertions and weird stuff implicit bailout without ending parent > output 1`] = `
 TAP version 13
-ok 1 - zro # {time} {
+# Subtest: zro
     1..0
-}
+ok 1 - zro # {time}
 
-ok 2 - one # {time} {
+# Subtest: one
     1..0
-}
+ok 2 - one # {time}
 
-ok 3 - two # {time} {
+# Subtest: two
     1..0
-}
+ok 3 - two # {time}
 
-not ok 4 - tre # {time} {
+# Subtest: tre
     not ok 1 - not fine
       ---
       at:
@@ -1893,7 +1891,6 @@ not ok 4 - tre # {time} {
       ...
     
     Bail out! not fine
-}
 Bail out! not fine
 
 `
@@ -2791,10 +2788,10 @@ not ok 2 - timeout! # {time}
   timeout: 1
   ...
 
-ok 3 - work it harder buf=true # {time} {
+# Subtest: work it harder buf=true
     1..1
     ok 1 - this is fine
-}
+ok 3 - work it harder buf=true # {time}
 
 not ok 4 - timeout!
   ---
@@ -2829,11 +2826,7 @@ not ok 1 - get lost buf=false # {time}
   timeout: 50
   ...
 
-not ok 2 - get lost buf=true # {time}
-  ---
-  timeout: 50
-  ...
-{
+# Subtest: get lost buf=true
     not ok 1 - timeout!
       ---
       expired: get lost buf=true
@@ -2845,7 +2838,10 @@ not ok 2 - get lost buf=true # {time}
     
     1..1
     # failed 1 test
-}
+not ok 2 - get lost buf=true # {time}
+  ---
+  timeout: 50
+  ...
 
 1..2
 # failed 2 of 2 tests
@@ -2875,11 +2871,7 @@ not ok 1 - get lost buf=false # {time}
   timeout: 50
   ...
 
-not ok 2 - get lost buf=true # {time}
-  ---
-  timeout: 50
-  ...
-{
+# Subtest: get lost buf=true
     # Subtest: carry on
         not ok 1 - timeout!
           ---
@@ -2895,7 +2887,10 @@ not ok 2 - get lost buf=true # {time}
     
     1..1
     # failed 1 test
-}
+not ok 2 - get lost buf=true # {time}
+  ---
+  timeout: 50
+  ...
 
 1..2
 # failed 2 of 2 tests
@@ -3923,14 +3918,14 @@ ok 3 - run this with a comment # {time}
 exports[`test/test.js TAP short output checks parallel sub bailout > parallel sub 1`] = `
 TAP version 13
 1..2
-ok 1 - slow child # {time} {
+# Subtest: slow child
     1..0
-}
+ok 1 - slow child # {time}
 
-ok 2 - fast child # {time} {
+# Subtest: fast child
     ok 1 - slow is going
     1..1
-}
+ok 2 - fast child # {time}
 
 
 `
@@ -3938,14 +3933,14 @@ ok 2 - fast child # {time} {
 exports[`test/test.js TAP short output checks parallel sub no options > parallel sub 1`] = `
 TAP version 13
 1..2
-ok 1 - slow child # {time} {
+# Subtest: slow child
     1..0
-}
+ok 1 - slow child # {time}
 
-ok 2 - fast child # {time} {
+# Subtest: fast child
     ok 1 - slow is going
     1..1
-}
+ok 2 - fast child # {time}
 
 
 `
@@ -4158,13 +4153,13 @@ ok 1 - parent # SKIP filter: only
 
 exports[`test/test.js TAP short output checks sub bailout > sub 1`] = `
 TAP version 13
-ok 1 - named child # {time} {
+# Subtest: named child
     ok 1 - this is fine
     ok 2 - (unnamed test)
     ok 3 - (unnamed test) # TODO
     1..3
     # todo: 1
-}
+ok 1 - named child # {time}
 
 # Subtest: named_function
     1..1
@@ -4182,13 +4177,13 @@ ok 3 - promisey # {time}
 
 exports[`test/test.js TAP short output checks sub no options > sub 1`] = `
 TAP version 13
-ok 1 - named child # {time} {
+# Subtest: named child
     ok 1 - this is fine
     ok 2 - (unnamed test)
     ok 3 - (unnamed test) # TODO
     1..3
     # todo: 1
-}
+ok 1 - named child # {time}
 
 # Subtest: named_function
     1..1

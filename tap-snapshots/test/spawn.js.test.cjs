@@ -47,10 +47,10 @@ not ok 1 - spawn something that does not exist ENOENT
 
 exports[`test/spawn.js TAP skip stuff > must match snapshot 1`] = `
 TAP version 13
-ok 1 - skipper # SKIP {
+# Subtest: skipper
     1..0
     # {time}
-}
+ok 1 - skipper # SKIP
 
 # Subtest: node ./test/spawn.js skip-reason
     1..0 # for no raisins
