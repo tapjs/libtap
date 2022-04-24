@@ -2541,6 +2541,45 @@ ok 2 - expect pass event to be emitted
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff t.emits returns promise > output 1`] = `
+TAP version 13
+not ok 1 - expect pass event to be emitted
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  source: |2
+          setTimeout(() => ee.emit('pass'))
+          t.emits(ee, 'pass').then(() => {
+    --^
+            t.pass('emit returned promise that resolved')
+          })
+  stack: |
+    {STACK}
+  ...
+
+not ok 2 - expect never emitted event to be emitted
+  ---
+  at:
+    line: #
+    column: #
+    file: test/test.js
+  source: |2
+          })
+          t.emits(ee, 'never emitted').then(() => {
+    --^
+            throw new Error('should not happen')
+          })
+  stack: |
+    {STACK}
+  ...
+
+1..2
+# failed 2 of 2 tests
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff teardown promise > output 1`] = `
 TAP version 13
 # Subtest: parent

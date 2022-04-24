@@ -1112,6 +1112,19 @@ t.test('assertions and weird stuff', t => {
       t.end()
     },
 
+    't.emits returns promise': t => {
+      const EE = require('events').EventEmitter
+      const ee = new EE()
+      setTimeout(() => ee.emit('pass'))
+      t.emits(ee, 'pass').then(() => {
+        t.pass('emit returned promise that resolved')
+      })
+      t.emits(ee, 'never emitted').then(() => {
+        throw new Error('should not happen')
+      })
+      t.end()
+    },
+
     'before sync': t => {
       let x = false
       t.before(() => x = true)
