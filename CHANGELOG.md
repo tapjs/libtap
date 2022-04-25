@@ -1,3 +1,28 @@
+## 1.4
+
+* subtests: only output comment style
+* t.emits() returns promise, resolves when emitted
+* tap-parser@11.0.1
+
+## 1.3
+
+* test: support setting snapshotFile explicitly in subtests
+
+## 1.2
+
+* remove yapool
+* feat: add t.hasProp() and friends
+* Escape # and \ characters in test message or directives
+* Escape bailout message and plan comment
+* tap-parser@11.0.0
+
+## 1.1
+
+* Provide a version-specific mkdirRecursive, with mkdirpNeeded flag
+* fix: join testdirName with path.sep instead of /
+* fix: do not break if global.process missing
+* uncaughtException catch unhandledRejections
+
 ## 1.0.0
 
 ### Breaking Changes
