@@ -2580,6 +2580,19 @@ not ok 2 - expect never emitted event to be emitted
 
 `
 
+exports[`test/test.js TAP assertions and weird stuff teardown in reverse order > output 1`] = `
+TAP version 13
+# Subtest: parent
+    ok 1 - this is fine
+    1..1
+ok 1 - parent # {time}
+
+# second teardown
+# first teardown
+1..1
+
+`
+
 exports[`test/test.js TAP assertions and weird stuff teardown promise > output 1`] = `
 TAP version 13
 # Subtest: parent
