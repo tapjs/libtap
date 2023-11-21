@@ -768,6 +768,20 @@ t.test('assertions and weird stuff', t => {
       tt.end()
     },
 
+    'teardown in reverse order': tt => {
+      tt.test('parent', tt => {
+        tt.teardown(() => {
+          tt.comment('first teardown')
+        })
+        tt.teardown(() => {
+          tt.comment('second teardown')
+        })
+        tt.pass('this is fine')
+        tt.end()
+      })
+      tt.end()
+    },
+
     'fullname without main': tt => {
       const main = process.argv[1]
       process.argv[1] = ''
