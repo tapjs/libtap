@@ -48,7 +48,7 @@
     "test",
     "testing"
   ],
-  "license": "ISC",
+  "license": "BlueOak-1.0.0",
   "repository": "https://github.com/tapjs/libtap.git",
   "scripts": {
     "presnap": "rimraf tap-snapshots",
