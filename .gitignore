@@ -1,6 +1,8 @@
 /*
 /.*
 
+!/.prettier*
+!/src
 !LICENSE.md
 !lib/
 !settings.js
